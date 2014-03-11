@@ -5,7 +5,7 @@ date: 2014-03-11 00:32:40 -0700
 comments: true
 categories: [Golang, How-To, GVM, Linux, OSX]
 ---
-# Using GVM for Golang development
+# Using GVM in your Golang development workflow
 
 Recently I began work on a project using [golang](http://golang.org/), and it 
 quickly became apparent I needed a way to map a Go environment to each project 
@@ -83,9 +83,9 @@ $ mkdir -p $HOME/go/{pkg,bin,src}
 $ git clone https://github.com/ottemo/ottemo-go.git $HOME/go/src/github.com/ottemo/ottemo-go
 ```
 
-The very last step is to add workspace's GOPATH to your environment.  
-We need to edit our gvm package environment for ottemo.  This will 
-open your favorite editor specified by the environment variable: $EDITOR
+The very last step is to add workspace's GOPATH to your environment.  We need 
+to edit our gvm package environment for ottemo.  This will open your favorite 
+editor specified by the environment variable: $EDITOR
 
 ``` bash Edit GOPATH 
 $ gvm pkgenv ottemo
