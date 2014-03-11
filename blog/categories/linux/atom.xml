@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Linux | ascent.io]]></title>
   <link href="http://vastbinderj.github.io/blog/categories/linux/atom.xml" rel="self"/>
   <link href="http://vastbinderj.github.io/"/>
-  <updated>2014-03-11T11:30:52-07:00</updated>
+  <updated>2014-03-11T11:41:25-07:00</updated>
   <id>http://vastbinderj.github.io/</id>
   <author>
     <name><![CDATA[James Vastbinder]]></name>
@@ -20,11 +20,11 @@
     <id>http://vastbinderj.github.io/blog/2014/03/11/gvm-with-golang</id>
     <content type="html"><![CDATA[<h1>Using GVM for Golang development</h1>
 
-<p>Recently I began work on a project using (golang)[<a href="http://golang.org/">http://golang.org/</a>], and it
+<p>Recently I began work on a project using <a href="http://golang.org/">golang</a>, and it
 quickly became apparent I needed a way to map a Go environment to each project
 to manage dependencies.  I wasn&rsquo;t able to find everything I needed in a single
 location which became the genesis for this post. I try to follow this
-(pattern)[<a href="http://golang.org/doc/code.html">http://golang.org/doc/code.html</a>] set by the golang team at Google.</p>
+<a href="http://golang.org/doc/code.html">pattern</a> set by the golang team at Google.</p>
 
 <p>For both OSX and Ubuntu you&rsquo;ll need the following dependencies:</p>
 
