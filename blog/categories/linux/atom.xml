@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Linux | ascent.io]]></title>
   <link href="http://vastbinderj.github.io/blog/categories/linux/atom.xml" rel="self"/>
   <link href="http://vastbinderj.github.io/"/>
-  <updated>2014-03-11T11:41:25-07:00</updated>
+  <updated>2014-03-11T11:45:52-07:00</updated>
   <id>http://vastbinderj.github.io/</id>
   <author>
     <name><![CDATA[James Vastbinder]]></name>
@@ -100,9 +100,9 @@ $ mkdir -p $HOME/go/{pkg,bin,src}
 $ git clone https://github.com/ottemo/ottemo-go.git $HOME/go/src/github.com/ottemo/ottemo-go
 </code></p>
 
-<p>The very last step is to add workspace&rsquo;s GOPATH to your environment.<br/>
-We need to edit our gvm package environment for ottemo.  This will
-open your favorite editor specified by the environment variable: $EDITOR</p>
+<p>The very last step is to add workspace&rsquo;s GOPATH to your environment.  We need
+to edit our gvm package environment for ottemo.  This will open your favorite
+editor specified by the environment variable: $EDITOR</p>
 
 <p><code>bash Edit GOPATH
 $ gvm pkgenv ottemo
