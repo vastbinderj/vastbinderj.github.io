@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Golang | ascent.io]]></title>
   <link href="http://vastbinderj.github.io/blog/categories/golang/atom.xml" rel="self"/>
   <link href="http://vastbinderj.github.io/"/>
-  <updated>2014-03-11T11:45:52-07:00</updated>
+  <updated>2014-03-11T13:19:02-07:00</updated>
   <id>http://vastbinderj.github.io/</id>
   <author>
     <name><![CDATA[James Vastbinder]]></name>
@@ -18,7 +18,7 @@
     <link href="http://vastbinderj.github.io/blog/2014/03/11/gvm-with-golang/"/>
     <updated>2014-03-11T00:32:40-07:00</updated>
     <id>http://vastbinderj.github.io/blog/2014/03/11/gvm-with-golang</id>
-    <content type="html"><![CDATA[<h1>Using GVM for Golang development</h1>
+    <content type="html"><![CDATA[<h1>Using GVM in your Golang development workflow</h1>
 
 <p>Recently I began work on a project using <a href="http://golang.org/">golang</a>, and it
 quickly became apparent I needed a way to map a Go environment to each project
