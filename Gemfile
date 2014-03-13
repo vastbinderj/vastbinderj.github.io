@@ -14,6 +14,8 @@ group :development do
   gem 'rb-fsevent', '~> 0.9'
   gem 'stringex', '~> 1.4.0'
   gem 'liquid', '~> 2.3.0'
+  gem 'kramdown'
+  gem 'coderay'
   gem 'directory_watcher', '1.4.1'
 end
 

@@ -21,6 +21,10 @@ For both OSX and Ubuntu you'll need the following dependencies:
 $ brew install mercurial bzr
 ``` 
 
+{% coderay Install Prerequisites %}
+$ brew install mercurial bzr
+{% endcoderay %}
+
 #### Ubuntu 
 
 ``` bash Install Prerequisites start:51 mark:52
