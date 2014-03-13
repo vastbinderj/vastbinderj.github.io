@@ -4,7 +4,7 @@
   <title><![CDATA[ascent.io]]></title>
   <link href="http://vastbinderj.github.io/atom.xml" rel="self"/>
   <link href="http://vastbinderj.github.io/"/>
-  <updated>2014-03-13T09:45:11-07:00</updated>
+  <updated>2014-03-13T09:47:18-07:00</updated>
   <id>http://vastbinderj.github.io/</id>
   <author>
     <name><![CDATA[James Vastbinder]]></name>
@@ -30,14 +30,14 @@ location which became the genesis for this post. I try to follow this
 
 <h4>OSX</h4>
 
-<figure class='code'><figcaption>Install Prerequisites</figcaption><div class='highlight'><table><tr><td class='line-numbers' aria-hidden='true'><pre><div data-line='1' class='line-number'></div></pre></td><td class='main  bash'><pre><div class='line'><span class="nv">$ </span>brew install mercurial bzr
+<figure class='code'><figcaption>Install Prerequisites </figcaption><div class='highlight'><table><tr><td class='line-numbers' aria-hidden='true'><pre><div data-line='1' class='line-number'></div></pre></td><td class='main  bash'><pre><div class='line'><span class="nv">$ </span>brew install mercurial bzr
 </div></pre></td></tr></table></div></figure>
 
 
 <h4>Ubuntu</h4>
 
-<figure class='code'><figcaption>Install Prerequisites</figcaption><div class='highlight'><table><tr><td class='line-numbers' aria-hidden='true'><pre><div data-line='1' class='line-number'></div><div data-line='2' class='line-number'></div></pre></td><td class='main  bash'><pre><div class='line'><span class="nv">$ </span>sudo apt-get update
-</div><div class='line'><span class="nv">$ </span>sudo apt-get install curl git mercurial make binutils gcc bzr bison -y
+<figure class='code'><figcaption>Install Prerequisites</figcaption><div class='highlight'><table><tr><td class='line-numbers' aria-hidden='true'><pre><div data-line='51' class='line-number'></div><div data-line='52' class='line-number marked start end'></div></pre></td><td class='main  bash'><pre><div class='line'><span class="nv">$ </span>sudo apt-get update
+</div><div class='line marked start end'><span class="nv">$ </span>sudo apt-get install curl git mercurial make binutils gcc bzr bison -y
 </div></pre></td></tr></table></div></figure>
 
 
