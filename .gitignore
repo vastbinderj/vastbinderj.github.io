@@ -1,1 +1,7 @@
 _site/
+source
+.pygments-cache
+.sass-cache
+.themes
+_deploy
+public
