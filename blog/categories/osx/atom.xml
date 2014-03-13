@@ -4,7 +4,7 @@
   <title><![CDATA[Category: OSX | ascent.io]]></title>
   <link href="http://vastbinderj.github.io/blog/categories/osx/atom.xml" rel="self"/>
   <link href="http://vastbinderj.github.io/"/>
-  <updated>2014-03-11T13:19:02-07:00</updated>
+  <updated>2014-03-13T09:43:42-07:00</updated>
   <id>http://vastbinderj.github.io/</id>
   <author>
     <name><![CDATA[James Vastbinder]]></name>
@@ -30,13 +30,13 @@ location which became the genesis for this post. I try to follow this
 
 <h4>OSX</h4>
 
-<p><code>bash  Install Prerequisites
+<p><code>bash  Install Prerequisites linenos:fales
 $ brew install mercurial bzr
 </code></p>
 
 <h4>Ubuntu</h4>
 
-<p><code>bash Install Prerequisites
+<p><code>bash Install Prerequisites linenos:false
 $ sudo apt-get update
 $ sudo apt-get install curl git mercurial make binutils gcc bzr bison -y
 </code></p>

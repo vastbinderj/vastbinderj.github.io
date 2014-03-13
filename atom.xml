@@ -4,7 +4,7 @@
   <title><![CDATA[ascent.io]]></title>
   <link href="http://vastbinderj.github.io/atom.xml" rel="self"/>
   <link href="http://vastbinderj.github.io/"/>
-  <updated>2014-03-11T13:19:02-07:00</updated>
+  <updated>2014-03-13T09:43:42-07:00</updated>
   <id>http://vastbinderj.github.io/</id>
   <author>
     <name><![CDATA[James Vastbinder]]></name>
@@ -30,37 +30,29 @@ location which became the genesis for this post. I try to follow this
 
 <h4>OSX</h4>
 
-<figure class='code'><figcaption><span>Install Prerequisites </span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>brew install mercurial bzr
-</span></code></pre></td></tr></table></div></figure>
+<figure class='code'><figcaption>Install Prerequisites</figcaption><div class='highlight'><table><tr><td class='line-numbers' aria-hidden='true'><pre><div data-line='1' class='line-number'></div></pre></td><td class='main  bash'><pre><div class='line'><span class="nv">$ </span>brew install mercurial bzr
+</div></pre></td></tr></table></div></figure>
 
-
-<p></p>
 
 <h4>Ubuntu</h4>
 
-<figure class='code'><figcaption><span>Install Prerequisites </span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>sudo apt-get update
-</span><span class='line'><span class="nv">$ </span>sudo apt-get install curl git mercurial make binutils gcc bzr bison -y
-</span></code></pre></td></tr></table></div></figure>
+<figure class='code'><figcaption>Install Prerequisites</figcaption><div class='highlight'><table><tr><td class='line-numbers' aria-hidden='true'><pre><div data-line='1' class='line-number'></div><div data-line='2' class='line-number'></div></pre></td><td class='main  bash'><pre><div class='line'><span class="nv">$ </span>sudo apt-get update
+</div><div class='line'><span class="nv">$ </span>sudo apt-get install curl git mercurial make binutils gcc bzr bison -y
+</div></pre></td></tr></table></div></figure>
 
 
 <h3>Download and Install GVM</h3>
 
-<figure class='code'><figcaption><span>GVM Installation  </span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>bash &lt; &lt;<span class="o">(</span>curl -s https://raw.github.com/moovweb/gvm/master/binscripts/gvm-installer<span class="o">)</span>
-</span></code></pre></td></tr></table></div></figure>
+<figure class='code'><figcaption>GVM Installation  </figcaption><div class='highlight'><table><tr><td class='line-numbers' aria-hidden='true'><pre><div data-line='1' class='line-number'></div></pre></td><td class='main  bash'><pre><div class='line'><span class="nv">$ </span>bash &lt; &lt;<span class="o">(</span>curl -s https://raw.github.com/moovweb/gvm/master/binscripts/gvm-installer<span class="o">)</span>
+</div></pre></td></tr></table></div></figure>
 
 
 <p>This adds the following to the bottom of your .bashrc, which you may want to move
 around according to your liking.</p>
 
-<figure class='code'><figcaption><span>GVM Configuration </span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># gvm config</span>
-</span><span class='line'><span class="o">[[</span>-s <span class="s2">&quot;$HOME/.gvm/scripts/gvm&quot;</span><span class="o">]]</span> <span class="o">&amp;&amp;</span> <span class="nb">source</span> <span class="s2">&quot;$HOME/.gvm/scripts/gvm&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
+<figure class='code'><figcaption>GVM Configuration </figcaption><div class='highlight'><table><tr><td class='line-numbers' aria-hidden='true'><pre><div data-line='1' class='line-number'></div><div data-line='2' class='line-number'></div></pre></td><td class='main  bash'><pre><div class='line'><span class="c"># gvm config</span>
+</div><div class='line'><span class="o">[[</span>-s <span class="s2">&quot;$HOME/.gvm/scripts/gvm&quot;</span><span class="o">]]</span> <span class="o">&amp;&amp;</span> <span class="nb">source</span> <span class="s2">&quot;$HOME/.gvm/scripts/gvm&quot;</span>
+</div></pre></td></tr></table></div></figure>
 
 
 <h3>Install Go Environments</h3>
@@ -68,27 +60,22 @@ around according to your liking.</p>
 <p>We are going to install version golang version 1.2, but you may install any of the
 available versions listed in this command:</p>
 
-<figure class='code'><figcaption><span>List Available Versions </span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>gvm listall
-</span></code></pre></td></tr></table></div></figure>
+<figure class='code'><figcaption>List Available Versions </figcaption><div class='highlight'><table><tr><td class='line-numbers' aria-hidden='true'><pre><div data-line='1' class='line-number'></div></pre></td><td class='main  bash'><pre><div class='line'><span class="nv">$ </span>gvm listall
+</div></pre></td></tr></table></div></figure>
 
 
 
 
-<figure class='code'><figcaption><span>Install Golang 1.2 and Set As Default </span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>gvm install go1.2
-</span><span class='line'><span class="nv">$ </span>gvm use go1.2 --default
-</span></code></pre></td></tr></table></div></figure>
+<figure class='code'><figcaption>Install Golang 1.2 and Set As Default </figcaption><div class='highlight'><table><tr><td class='line-numbers' aria-hidden='true'><pre><div data-line='1' class='line-number'></div><div data-line='2' class='line-number'></div></pre></td><td class='main  bash'><pre><div class='line'><span class="nv">$ </span>gvm install go1.2
+</div><div class='line'><span class="nv">$ </span>gvm use go1.2 --default
+</div></pre></td></tr></table></div></figure>
 
 
 
 
-<figure class='code'><figcaption><span>Create a Project Specific Package Set </span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>gvm pkgset create ottemo
-</span><span class='line'><span class="nv">$ </span>gvm pkgset use ottemo
-</span></code></pre></td></tr></table></div></figure>
+<figure class='code'><figcaption>Create a Project Specific Package Set </figcaption><div class='highlight'><table><tr><td class='line-numbers' aria-hidden='true'><pre><div data-line='1' class='line-number'></div><div data-line='2' class='line-number'></div></pre></td><td class='main  bash'><pre><div class='line'><span class="nv">$ </span>gvm pkgset create ottemo
+</div><div class='line'><span class="nv">$ </span>gvm pkgset use ottemo
+</div></pre></td></tr></table></div></figure>
 
 
 <h3>Configure Your Golang Workspace</h3>
@@ -98,56 +85,40 @@ a specific gvm package set to be used while developing.  Using gvm like
 this helps maintain a clean seperation of concerns by project.  Let&rsquo;s use
 the gvm package set we created above.</p>
 
-<figure class='code'><figcaption><span>List all Package Sets </span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>gvm pkgset list
-</span><span class='line'>
-</span><span class='line'>    <span class="nv">global</span>
-</span><span class='line'><span class="o">=</span>&gt;  ottemo
-</span></code></pre></td></tr></table></div></figure>
+<figure class='code'><figcaption>List all Package Sets </figcaption><div class='highlight'><table><tr><td class='line-numbers' aria-hidden='true'><pre><div data-line='1' class='line-number'></div><div data-line='2' class='line-number'></div><div data-line='3' class='line-number'></div><div data-line='4' class='line-number'></div></pre></td><td class='main  bash'><pre><div class='line'><span class="nv">$ </span>gvm pkgset list
+</div><div class='line'> </div><div class='line'>    <span class="nv">global</span>
+</div><div class='line'><span class="o">=</span>&gt;  ottemo
+</div></pre></td></tr></table></div></figure>
 
 
 <p>Now lets create a workspace relative to our $HOME directory and set up
 the necessary project tree.  We&rsquo;ll use a single command to create our
 skeleton directory tree.</p>
 
-<figure class='code'><figcaption><span>Create Directory Tree </span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>mkdir -p <span class="nv">$HOME</span>/go/<span class="o">{</span>pkg,bin,src<span class="o">}</span>
-</span><span class='line'><span class="nv">$ </span>git clone https://github.com/ottemo/ottemo-go.git <span class="nv">$HOME</span>/go/src/github.com/ottemo/ottemo-go
-</span></code></pre></td></tr></table></div></figure>
+<figure class='code'><figcaption>Create Directory Tree </figcaption><div class='highlight'><table><tr><td class='line-numbers' aria-hidden='true'><pre><div data-line='1' class='line-number'></div><div data-line='2' class='line-number'></div></pre></td><td class='main  bash'><pre><div class='line'><span class="nv">$ </span>mkdir -p <span class="nv">$HOME</span>/go/<span class="o">{</span>pkg,bin,src<span class="o">}</span>
+</div><div class='line'><span class="nv">$ </span>git clone https://github.com/ottemo/ottemo-go.git <span class="nv">$HOME</span>/go/src/github.com/ottemo/ottemo-go
+</div></pre></td></tr></table></div></figure>
 
 
 <p>The very last step is to add workspace&rsquo;s GOPATH to your environment.  We need
 to edit our gvm package environment for ottemo.  This will open your favorite
 editor specified by the environment variable: $EDITOR</p>
 
-<figure class='code'><figcaption><span>Edit GOPATH </span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>gvm pkgenv ottemo
-</span></code></pre></td></tr></table></div></figure>
+<figure class='code'><figcaption>Edit GOPATH </figcaption><div class='highlight'><table><tr><td class='line-numbers' aria-hidden='true'><pre><div data-line='1' class='line-number'></div></pre></td><td class='main  bash'><pre><div class='line'><span class="nv">$ </span>gvm pkgenv ottemo
+</div></pre></td></tr></table></div></figure>
 
 
 <p>You want to edit lines 12 and 16, to add your personal workspace tree.</p>
 
-<figure class='code'><figcaption><span>Edit GOPATH and PATH Environment Variables </span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># original line</span>
-</span><span class='line'><span class="nb">export </span>GOPATH; <span class="nv">GOPATH</span><span class="o">=</span><span class="s2">&quot;/Users/james/.gvm/pkgsets/go1.2/ottemo:$GOPATH&quot;</span>
-</span><span class='line'><span class="c"># new edited line</span>
-</span><span class='line'><span class="nb">export </span>GOPATH; <span class="nv">GOPATH</span><span class="o">=</span><span class="s2">&quot;/Users/james/.gvm/pkgsets/go1.2/ottemo:$HOME/go:$GOPATH&quot;</span>
-</span><span class='line'><span class="c"># original line</span>
-</span><span class='line'><span class="nb">export </span>PATH; <span class="nv">PATH</span><span class="o">=</span><span class="s2">&quot;/Users/james/.gvm/pkgsets/go1.2/ottemo/bin:${GVM_OVERLAY_PREFIX}/bin:${PATH}&quot;</span>
-</span><span class='line'><span class="c"># new edited line</span>
-</span><span class='line'><span class="nb">export </span>PATH; <span class="nv">PATH</span><span class="o">=</span><span class="s2">&quot;/Users/james/.gvm/pkgsets/go1.2/ottemo/bin:${GVM_OVERLAY_PREFIX}/bin:$HOME/go/bin:${PATH}&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
+<figure class='code'><figcaption>Edit GOPATH and PATH Environment Variables </figcaption><div class='highlight'><table><tr><td class='line-numbers' aria-hidden='true'><pre><div data-line='1' class='line-number'></div><div data-line='2' class='line-number'></div><div data-line='3' class='line-number'></div><div data-line='4' class='line-number'></div><div data-line='5' class='line-number'></div><div data-line='6' class='line-number'></div><div data-line='7' class='line-number'></div><div data-line='8' class='line-number'></div></pre></td><td class='main  bash'><pre><div class='line'><span class="c"># original line</span>
+</div><div class='line'><span class="nb">export </span>GOPATH; <span class="nv">GOPATH</span><span class="o">=</span><span class="s2">&quot;/Users/james/.gvm/pkgsets/go1.2/ottemo:$GOPATH&quot;</span>
+</div><div class='line'><span class="c"># new edited line</span>
+</div><div class='line'><span class="nb">export </span>GOPATH; <span class="nv">GOPATH</span><span class="o">=</span><span class="s2">&quot;/Users/james/.gvm/pkgsets/go1.2/ottemo:$HOME/go:$GOPATH&quot;</span>
+</div><div class='line'><span class="c"># original line</span>
+</div><div class='line'><span class="nb">export </span>PATH; <span class="nv">PATH</span><span class="o">=</span><span class="s2">&quot;/Users/james/.gvm/pkgsets/go1.2/ottemo/bin:${GVM_OVERLAY_PREFIX}/bin:${PATH}&quot;</span>
+</div><div class='line'><span class="c"># new edited line</span>
+</div><div class='line'><span class="nb">export </span>PATH; <span class="nv">PATH</span><span class="o">=</span><span class="s2">&quot;/Users/james/.gvm/pkgsets/go1.2/ottemo/bin:${GVM_OVERLAY_PREFIX}/bin:$HOME/go/bin:${PATH}&quot;</span>
+</div></pre></td></tr></table></div></figure>
 
 
 <h3>Notes</h3>
@@ -155,37 +126,22 @@ editor specified by the environment variable: $EDITOR</p>
 <p>I use gvm-prompt which comes with GVM to tell me which Golang enviroment I&rsquo;m currently using.<br/>
 I&rsquo;ve included my prompt for bash as sample.</p>
 
-<figure class='code'><figcaption><span>Sample Prompt Definition </span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="k">if</span><span class="o">[</span><span class="s2">&quot;$(whoami)&quot;</span><span class="o">=</span><span class="s1">&#39;root&#39;</span><span class="o">]</span>; <span class="k">then</span>
-</span><span class='line'><span class="k">  </span><span class="nv">RED</span><span class="o">=</span><span class="s1">&#39;\e[0;31m&#39;</span>
-</span><span class='line'>  <span class="nv">GREEN</span><span class="o">=</span><span class="s1">&#39;\e[0;32m&#39;</span>
-</span><span class='line'>  <span class="nv">NC</span><span class="o">=</span><span class="s1">&#39;\e[0m&#39;</span>
-</span><span class='line'>  <span class="nv">GIT_BRANCH</span><span class="o">=</span><span class="s1">&#39;$(__git_ps1 &quot;(%s)&quot;)&#39;</span>
-</span><span class='line'>  <span class="nv">GVM</span><span class="o">=</span><span class="s1">&#39;$(gvm-prompt &quot;(%s)&quot;)&#39;</span>
-</span><span class='line'>  <span class="nv">PS1</span><span class="o">=</span><span class="s2">&quot;[${RED}\u@\h:\W \t.\d${GREEN}${GIT_BRANCH}$NC ${GVM}] \n &gt;&quot;</span>
-</span><span class='line'><span class="k">else</span>
-</span><span class='line'><span class="k">  </span><span class="nv">RED</span><span class="o">=</span><span class="s1">&#39;\e[0;31m&#39;</span>
-</span><span class='line'>  <span class="nv">GREEN</span><span class="o">=</span><span class="s1">&#39;\e[0;32m&#39;</span>
-</span><span class='line'>  <span class="nv">NC</span><span class="o">=</span><span class="s1">&#39;\e[0m&#39;</span>
-</span><span class='line'>  <span class="nv">GIT_BRANCH</span><span class="o">=</span><span class="s1">&#39;$(__git_ps1 &quot;(%s)&quot;)&#39;</span>
-</span><span class='line'>  <span class="nv">GVM</span><span class="o">=</span><span class="s1">&#39;$(gvm-prompt &quot;(%s)&quot;)&#39;</span>
-</span><span class='line'>  <span class="nv">PS1</span><span class="o">=</span><span class="s2">&quot;[${GREEN}\u@\h:\W ${RED}${GIT_BRANCH}$NC ${GVM}] \n &gt;&quot;</span>
-</span><span class='line'><span class="k">fi</span>
-</span></code></pre></td></tr></table></div></figure>
+<figure class='code'><figcaption>Sample Prompt Definition </figcaption><div class='highlight'><table><tr><td class='line-numbers' aria-hidden='true'><pre><div data-line='1' class='line-number'></div><div data-line='2' class='line-number'></div><div data-line='3' class='line-number'></div><div data-line='4' class='line-number'></div><div data-line='5' class='line-number'></div><div data-line='6' class='line-number'></div><div data-line='7' class='line-number'></div><div data-line='8' class='line-number'></div><div data-line='9' class='line-number'></div><div data-line='10' class='line-number'></div><div data-line='11' class='line-number'></div><div data-line='12' class='line-number'></div><div data-line='13' class='line-number'></div><div data-line='14' class='line-number'></div><div data-line='15' class='line-number'></div></pre></td><td class='main  bash'><pre><div class='line'><span class="k">if</span><span class="o">[</span><span class="s2">&quot;$(whoami)&quot;</span><span class="o">=</span><span class="s1">&#39;root&#39;</span><span class="o">]</span>; <span class="k">then</span>
+</div><div class='line'><span class="k">  </span><span class="nv">RED</span><span class="o">=</span><span class="s1">&#39;\e[0;31m&#39;</span>
+</div><div class='line'>  <span class="nv">GREEN</span><span class="o">=</span><span class="s1">&#39;\e[0;32m&#39;</span>
+</div><div class='line'>  <span class="nv">NC</span><span class="o">=</span><span class="s1">&#39;\e[0m&#39;</span>
+</div><div class='line'>  <span class="nv">GIT_BRANCH</span><span class="o">=</span><span class="s1">&#39;$(__git_ps1 &quot;(%s)&quot;)&#39;</span>
+</div><div class='line'>  <span class="nv">GVM</span><span class="o">=</span><span class="s1">&#39;$(gvm-prompt &quot;(%s)&quot;)&#39;</span>
+</div><div class='line'>  <span class="nv">PS1</span><span class="o">=</span><span class="s2">&quot;[${RED}\u@\h:\W \t.\d${GREEN}${GIT_BRANCH}$NC ${GVM}] \n &gt;&quot;</span>
+</div><div class='line'><span class="k">else</span>
+</div><div class='line'><span class="k">  </span><span class="nv">RED</span><span class="o">=</span><span class="s1">&#39;\e[0;31m&#39;</span>
+</div><div class='line'>  <span class="nv">GREEN</span><span class="o">=</span><span class="s1">&#39;\e[0;32m&#39;</span>
+</div><div class='line'>  <span class="nv">NC</span><span class="o">=</span><span class="s1">&#39;\e[0m&#39;</span>
+</div><div class='line'>  <span class="nv">GIT_BRANCH</span><span class="o">=</span><span class="s1">&#39;$(__git_ps1 &quot;(%s)&quot;)&#39;</span>
+</div><div class='line'>  <span class="nv">GVM</span><span class="o">=</span><span class="s1">&#39;$(gvm-prompt &quot;(%s)&quot;)&#39;</span>
+</div><div class='line'>  <span class="nv">PS1</span><span class="o">=</span><span class="s2">&quot;[${GREEN}\u@\h:\W ${RED}${GIT_BRANCH}$NC ${GVM}] \n &gt;&quot;</span>
+</div><div class='line'><span class="k">fi</span>
+</div></pre></td></tr></table></div></figure>
 
 
 
