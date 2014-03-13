@@ -4,7 +4,7 @@
   <title><![CDATA[Category: OSX | ascent.io]]></title>
   <link href="http://vastbinderj.github.io/blog/categories/osx/atom.xml" rel="self"/>
   <link href="http://vastbinderj.github.io/"/>
-  <updated>2014-03-13T09:43:42-07:00</updated>
+  <updated>2014-03-13T09:45:11-07:00</updated>
   <id>http://vastbinderj.github.io/</id>
   <author>
     <name><![CDATA[James Vastbinder]]></name>
@@ -134,7 +134,7 @@ $ gvm pkgenv ottemo
 <p>I use gvm-prompt which comes with GVM to tell me which Golang enviroment I&rsquo;m currently using.<br/>
 I&rsquo;ve included my prompt for bash as sample.</p>
 
-<p><code>bash Sample Prompt Definition
+<p><code>bash Sample Prompt Definition linenos:true
 if["$(whoami)"='root']; then
   RED='\e[0;31m'
   GREEN='\e[0;32m'
