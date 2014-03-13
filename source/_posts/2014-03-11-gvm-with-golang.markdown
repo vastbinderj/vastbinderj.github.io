@@ -23,7 +23,7 @@ $ brew install mercurial bzr
 
 #### Ubuntu 
 
-``` bash Install Prerequisites 
+``` bash Install Prerequisites start:51 mark:52
 $ sudo apt-get update
 $ sudo apt-get install curl git mercurial make binutils gcc bzr bison -y
 ```
@@ -109,7 +109,7 @@ export PATH; PATH="/Users/james/.gvm/pkgsets/go1.2/ottemo/bin:${GVM_OVERLAY_PREF
 I use gvm-prompt which comes with GVM to tell me which Golang enviroment I'm currently using.  
 I've included my prompt for bash as sample.
 
-``` bash Sample Prompt Definition 
+``` bash Sample Prompt Definition linenos:true
 if["$(whoami)"='root']; then
   RED='\e[0;31m'
   GREEN='\e[0;32m'
