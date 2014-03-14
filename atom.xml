@@ -4,7 +4,7 @@
   <title><![CDATA[ascent.io]]></title>
   <link href="http://www.ascent.io/atom.xml" rel="self"/>
   <link href="http://www.ascent.io/"/>
-  <updated>2014-03-14T01:16:27-07:00</updated>
+  <updated>2014-03-14T14:16:45-07:00</updated>
   <id>http://www.ascent.io/</id>
   <author>
     <name><![CDATA[James Vastbinder]]></name>
@@ -14,17 +14,244 @@
 
   
   <entry>
-    <title type="html"><![CDATA[using gvm with golang]]></title>
+    <title type="html"><![CDATA[Debugging a Homebrew Failed Install]]></title>
+    <link href="http://www.ascent.io/blog/2014/03/14/debugging-a-homebrew-failed-install/"/>
+    <updated>2014-03-14T13:10:30-07:00</updated>
+    <id>http://www.ascent.io/blog/2014/03/14/debugging-a-homebrew-failed-install</id>
+    <content type="html"><![CDATA[<p>This morning I wanted to install a Go environment on my Mac Air, only to be
+greeted with this ominous error from homebrew:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>brew install <span class="nv">bzr</span>
+</span><span class='line'><span class="o">==</span>&gt; Downloading https://launchpad.net/bzr/2.6/2.6.0/+download/bzr-2.6.0.tar.gz
+</span><span class='line'>Already downloaded: /Library/Caches/Homebrew/bazaar-2.6.0.tar.gz
+</span><span class='line'><span class="o">==</span>&gt; make man1/bzr.1
+</span><span class='line'><span class="o">==</span>&gt; make
+</span><span class='line'>Cannot build extension <span class="s2">&quot;bzrlib._annotator_pyx&quot;</span>.
+</span><span class='line'>Use <span class="s2">&quot;build_ext --allow-python-fallback&quot;</span> to use slower python implementations instead.
+</span><span class='line'>
+</span><span class='line'>error: <span class="nb">command</span> <span class="s1">&#39;clang&#39;</span> failed with <span class="nb">exit </span>status 1
+</span><span class='line'>make: *** <span class="o">[</span>extensions<span class="o">]</span> Error 1
+</span><span class='line'>
+</span><span class='line'>READ THIS: https://github.com/Homebrew/homebrew/wiki/troubleshooting
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></p>
+
+<!-- more -->
+
+
+<p>Now I had just built out several different Golang development environments earlier
+in the week.  Several searches on Google weren&rsquo;t providing any relief or
+guidance.</p>
+
+<p>My first step was to update homebrew.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>brew update  <span class="o">&amp;&amp;</span> brew upgrade
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></p>
+
+<p>No relief there either&hellip;.  At least not yet.  I then turned up the logging and
+sent it to a gist.</p>
+
+<h3>Send debugging data to a gist</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>brew gist-logs --config --doctor bzr
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></p>
+
+<p>Here is the output I found:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>building extension modules.
+</span><span class='line'>python setup.py build_ext -i
+</span><span class='line'>No Cython, trying Pyrex...
+</span><span class='line'>
+</span><span class='line'>The python package <span class="s1">&#39;Pyrex&#39;</span> is not available. If the .c files are available,
+</span><span class='line'>they will be built, but modifying the .pyx files will not rebuild them.
+</span><span class='line'>
+</span><span class='line'>running build_ext
+</span><span class='line'>building <span class="s1">&#39;bzrlib._annotator_pyx&#39;</span> extension
+</span><span class='line'>creating build
+</span><span class='line'>creating build/temp.macosx-10.9-intel-2.7
+</span><span class='line'>creating build/temp.macosx-10.9-intel-2.7/bzrlib
+</span><span class='line'>clang -fno-strict-aliasing -fno-common -dynamic -g -Os -pipe -fno-common -fno-strict-aliasing -fwrapv -mno-fused-madd -DENABLE_DTRACE -DMACOSX -DNDEBUG -Wall -Wstrict-prototypes -Wshorten-64-to-32 -DNDEBUG -g -fwrapv -Os -Wall -Wstrict-prototypes -DENABLE_DTRACE -pipe -arch x86_64 -I/System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7 -c bzrlib/_annotator_pyx.c -o build/temp.macosx-10.9-intel-2.7/bzrlib/_annotator_pyx.o
+</span><span class='line'>clang: error: unknown argument: <span class="s1">&#39;-mno-fused-madd&#39;</span> <span class="o">[</span>-Wunused-command-line-argument-hard-error-in-future<span class="o">]</span>
+</span><span class='line'>clang: note: this will be a hard error <span class="o">(</span>cannot be downgraded to a warning<span class="o">)</span> in the future
+</span><span class='line'>
+</span><span class='line'>  Cannot build extension <span class="s2">&quot;bzrlib._annotator_pyx&quot;</span>.
+</span><span class='line'>  Use <span class="s2">&quot;build_ext --allow-python-fallback&quot;</span> to use slower python implementations instead.
+</span><span class='line'>
+</span><span class='line'>error: <span class="nb">command</span> <span class="s1">&#39;clang&#39;</span> failed with <span class="nb">exit </span>status 1
+</span><span class='line'>make: *** <span class="o">[</span>extensions<span class="o">]</span> Error 1
+</span><span class='line'>
+</span><span class='line'>HOMEBREW_VERSION: 0.9.5
+</span><span class='line'>HEAD: f1a2a667ebc1c630f03298ac8be5882426e7d454
+</span><span class='line'>CPU: quad-core 64-bit sandybridge
+</span><span class='line'>OS X: 10.9.2-x86_64
+</span><span class='line'>Xcode: 5.1
+</span><span class='line'>CLT: 5.1.0.0.1.1393561416
+</span><span class='line'>X11: 2.7.5 <span class="o">=</span>&gt; /opt/X11
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>
+This led me to belive I needed to install either Cython or Pyrex.  I decided
+upon attempting to install Pyrex first.  I quickly learned at the Bazaar
+website they force Mac users to use Python 2.6 with their install scripts.<br/>
+This means I had to use sudo to get Pyrex to install&hellip;</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>sudo /usr/bin/easy_install-2.6 pyrex
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></p>
+
+<p>One more attempt at installing Bazaar with Homebrew left me with this error
+during make:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>brew gist-logs --config --doctor bzr
+</span><span class='line'>
+</span><span class='line'>building extension modules.
+</span><span class='line'>python setup.py build_ext -i
+</span><span class='line'>running build_ext
+</span><span class='line'>skipping <span class="s1">&#39;bzrlib/_annotator_pyx.c&#39;</span> Cython extension <span class="o">(</span>up-to-date<span class="o">)</span>
+</span><span class='line'>building <span class="s1">&#39;bzrlib._annotator_pyx&#39;</span> extension
+</span><span class='line'>creating build
+</span><span class='line'>creating build/temp.macosx-10.9-intel-2.7
+</span><span class='line'>creating build/temp.macosx-10.9-intel-2.7/bzrlib
+</span><span class='line'>clang -fno-strict-aliasing -fno-common -dynamic -g -Os -pipe -fno-common -fno-strict-aliasing -fwrapv -mno-fused-madd -DENABLE_DTRACE -DMACOSX -DNDEBUG -Wall -Wstrict-prototypes -Wshorten-64-to-32 -DNDEBUG -g -fwrapv -Os -Wall -Wstrict-prototypes -DENABLE_DTRACE -pipe -arch x86_64 -I/System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7 -c bzrlib/_annotator_pyx.c -o build/temp.macosx-10.9-intel-2.7/bzrlib/_annotator_pyx.o
+</span><span class='line'>clang: error: unknown argument: <span class="s1">&#39;-mno-fused-madd&#39;</span> <span class="o">[</span>-Wunused-command-line-argument-hard-error-in-future<span class="o">]</span>
+</span><span class='line'>clang: note: this will be a hard error <span class="o">(</span>cannot be downgraded to a warning<span class="o">)</span> in the future
+</span><span class='line'>
+</span><span class='line'>  Cannot build extension <span class="s2">&quot;bzrlib._annotator_pyx&quot;</span>.
+</span><span class='line'>  Use <span class="s2">&quot;build_ext --allow-python-fallback&quot;</span> to use slower python implementations instead.
+</span><span class='line'>
+</span><span class='line'>error: <span class="nb">command</span> <span class="s1">&#39;clang&#39;</span> failed with <span class="nb">exit </span>status 1
+</span><span class='line'>make: *** <span class="o">[</span>extensions<span class="o">]</span> Error 1
+</span><span class='line'>
+</span><span class='line'>HOMEBREW_VERSION: 0.9.5
+</span><span class='line'>HEAD: f1a2a667ebc1c630f03298ac8be5882426e7d454
+</span><span class='line'>CPU: quad-core 64-bit sandybridge
+</span><span class='line'>OS X: 10.9.2-x86_64
+</span><span class='line'>Xcode: 5.1
+</span><span class='line'>CLT: 5.1.0.0.1.1393561416
+</span><span class='line'>X11: 2.7.5 <span class="o">=</span>&gt; /opt/X11
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Resolution</h3>
+
+<p>Now I was really scratching my head, when I finally realized Apple had just
+updated Xcode this week.  Earlier in the day, so had the Homebrew team.  They were
+already on the case and had <a href="https://github.com/Homebrew/homebrew/issues/27534#issuecomment-37691498">pushed a fix</a>
+whilst I was fighting this issue.</p>
+
+<p>Once more I ran</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>brew update
+</span><span class='line'>
+</span><span class='line'><span class="nv">$ </span>brew install bzr
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>And I was met with a successful install.  If you find your way here, I hope
+this helps you along your path when debugging a failed Homebrew install.  A
+special thanks to the <a href="https://github.com/Homebrew">Homebrew team</a> for working
+hard to provide a great product and even better service!</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[using gvm with golang in your development workflow]]></title>
     <link href="http://www.ascent.io/blog/2014/03/11/gvm-with-golang/"/>
     <updated>2014-03-11T00:32:40-07:00</updated>
     <id>http://www.ascent.io/blog/2014/03/11/gvm-with-golang</id>
-    <content type="html"><![CDATA[<h1>Using GVM in your Golang development workflow</h1>
-
-<p>Recently I began work on a project using <a href="http://golang.org/">golang</a>, and it
+    <content type="html"><![CDATA[<p>Recently I began work on a project using <a href="http://golang.org/">golang</a>, and it
 quickly became apparent I needed a way to map a Go environment to each project
 to manage dependencies.  I wasn&rsquo;t able to find everything I needed in a single
 location which became the genesis for this post. I try to follow this
 <a href="http://golang.org/doc/code.html">pattern</a> set by the golang team at Google.</p>
+
+<!-- more -->
+
 
 <p>For both OSX and Ubuntu you&rsquo;ll need the following dependencies:</p>
 

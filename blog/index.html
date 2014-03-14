@@ -9,8 +9,19 @@
   <meta name="author" content="James Vastbinder">
 
   
-  <meta name="description" content="Using GVM in your Golang development workflow Recently I began work on a project using golang, and it
-quickly became apparent I needed a way to map a &hellip;">
+  <meta name="description" content="This morning I wanted to install a Go environment on my Mac Air, only to be
+greeted with this ominous error from homebrew: 1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -90,7 +101,80 @@ quickly became apparent I needed a way to map a &hellip;">
   <header>
     
       <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
-        <h1 class="entry-title"><a href="/blog/2014/03/11/gvm-with-golang/">Using Gvm With Golang</a></h1>
+        <h1 class="entry-title"><a href="/blog/2014/03/14/debugging-a-homebrew-failed-install/">Debugging a Homebrew Failed Install</a></h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-03-14T13:10:30-07:00" pubdate data-updated="true">Mar 14<span>th</span>, 2014</time>
+        
+         | <a href="/blog/2014/03/14/debugging-a-homebrew-failed-install/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>This morning I wanted to install a Go environment on my Mac Air, only to be
+greeted with this ominous error from homebrew:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>brew install <span class="nv">bzr</span>
+</span><span class='line'><span class="o">==</span>&gt; Downloading https://launchpad.net/bzr/2.6/2.6.0/+download/bzr-2.6.0.tar.gz
+</span><span class='line'>Already downloaded: /Library/Caches/Homebrew/bazaar-2.6.0.tar.gz
+</span><span class='line'><span class="o">==</span>&gt; make man1/bzr.1
+</span><span class='line'><span class="o">==</span>&gt; make
+</span><span class='line'>Cannot build extension <span class="s2">&quot;bzrlib._annotator_pyx&quot;</span>.
+</span><span class='line'>Use <span class="s2">&quot;build_ext --allow-python-fallback&quot;</span> to use slower python implementations instead.
+</span><span class='line'>
+</span><span class='line'>error: <span class="nb">command</span> <span class="s1">&#39;clang&#39;</span> failed with <span class="nb">exit </span>status 1
+</span><span class='line'>make: *** <span class="o">[</span>extensions<span class="o">]</span> Error 1
+</span><span class='line'>
+</span><span class='line'>READ THIS: https://github.com/Homebrew/homebrew/wiki/troubleshooting
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2014/03/14/debugging-a-homebrew-failed-install/">Read on &rarr;</a>
+    </footer>
+  
+
+</article>
+
+
+    <article class="post">
+  <header>
+    
+      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
+        <h1 class="entry-title"><a href="/blog/2014/03/11/gvm-with-golang/">Using Gvm With Golang in Your Development Workflow</a></h1>
       
     
     
@@ -116,190 +200,18 @@ quickly became apparent I needed a way to map a &hellip;">
   </header>
 
 
-  <div class="entry-content"><h1>Using GVM in your Golang development workflow</h1>
-
-<p>Recently I began work on a project using <a href="http://golang.org/">golang</a>, and it
+  <div class="entry-content"><p>Recently I began work on a project using <a href="http://golang.org/">golang</a>, and it
 quickly became apparent I needed a way to map a Go environment to each project
 to manage dependencies.  I wasn&rsquo;t able to find everything I needed in a single
 location which became the genesis for this post. I try to follow this
 <a href="http://golang.org/doc/code.html">pattern</a> set by the golang team at Google.</p>
 
-<p>For both OSX and Ubuntu you&rsquo;ll need the following dependencies:</p>
-
-<h4>OSX</h4>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>brew install mercurial bzr
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p></p>
-
-<h4>Ubuntu</h4>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>sudo apt-get update
-</span><span class='line'><span class="nv">$ </span>sudo apt-get install curl git mercurial make binutils gcc bzr bison -y
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>Download and Install GVM</h3>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>bash &lt; &lt;<span class="o">(</span>curl -s https://raw.github.com/moovweb/gvm/master/binscripts/gvm-installer<span class="o">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>This adds the following to the bottom of your .bashrc, which you may want to move
-around according to your liking.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># gvm config</span>
-</span><span class='line'><span class="o">[[</span>-s <span class="s2">&quot;$HOME/.gvm/scripts/gvm&quot;</span><span class="o">]]</span> <span class="o">&amp;&amp;</span> <span class="nb">source</span> <span class="s2">&quot;$HOME/.gvm/scripts/gvm&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>Install Go Environments</h3>
-
-<p>We are going to install version golang version 1.2, but you may install any of the
-available versions listed in this command:</p>
-
-<h4>List all Go Versions installed</h4>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>gvm listall
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h4>Install Go1.2 and set as default</h4>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>gvm install go1.2
-</span><span class='line'><span class="nv">$ </span>gvm use go1.2 --default
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h4>Create a Project specific package set</h4>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>gvm pkgset create ottemo
-</span><span class='line'><span class="nv">$ </span>gvm pkgset use ottemo
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>Configure Your Golang Workspace</h3>
-
-<p>Here we are going to download a small project I&rsquo;m working on and assign
-a specific gvm package set to be used while developing.  Using gvm like
-this helps maintain a clean seperation of concerns by project.  Let&rsquo;s use
-the gvm package set we created above.</p>
-
-<h4>List all package sets</h4>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>gvm pkgset list
-</span><span class='line'>
-</span><span class='line'>    <span class="nv">global</span>
-</span><span class='line'><span class="o">=</span>&gt;  ottemo
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Now lets create a workspace relative to our $HOME directory and set up
-the necessary project tree.  We&rsquo;ll use a single command to create our
-skeleton directory tree.</p>
-
-<h4>Create Directory Tree</h4>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>mkdir -p <span class="nv">$HOME</span>/go/<span class="o">{</span>pkg,bin,src<span class="o">}</span>
-</span><span class='line'><span class="nv">$ </span>git clone https://github.com/ottemo/ottemo-go.git <span class="nv">$HOME</span>/go/src/github.com/ottemo/ottemo-go
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>The very last step is to add workspace&rsquo;s GOPATH to your environment.  We need
-to edit our gvm package environment for ottemo.  This will open your favorite
-editor specified by the environment variable: $EDITOR</p>
-
-<h4>Edit GOPATH</h4>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>gvm pkgenv ottemo
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>You want to edit lines 12 and 16, to add your personal workspace tree.</p>
-
-<h4>Edit GOPATH and PATH Environment Variables</h4>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># original line</span>
-</span><span class='line'><span class="nb">export </span>GOPATH; <span class="nv">GOPATH</span><span class="o">=</span><span class="s2">&quot;/Users/james/.gvm/pkgsets/go1.2/ottemo:$GOPATH&quot;</span>
-</span><span class='line'><span class="c"># new edited line</span>
-</span><span class='line'><span class="nb">export </span>GOPATH; <span class="nv">GOPATH</span><span class="o">=</span><span class="s2">&quot;/Users/james/.gvm/pkgsets/go1.2/ottemo:$HOME/go:$GOPATH&quot;</span>
-</span><span class='line'><span class="c"># original line</span>
-</span><span class='line'><span class="nb">export </span>PATH; <span class="nv">PATH</span><span class="o">=</span><span class="s2">&quot;/Users/james/.gvm/pkgsets/go1.2/ottemo/bin:${GVM_OVERLAY_PREFIX}/bin:${PATH}&quot;</span>
-</span><span class='line'><span class="c"># new edited line</span>
-</span><span class='line'><span class="nb">export </span>PATH; <span class="nv">PATH</span><span class="o">=</span><span class="s2">&quot;/Users/james/.gvm/pkgsets/go1.2/ottemo/bin:${GVM_OVERLAY_PREFIX}/bin:$HOME/go/bin:${PATH}&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>Notes</h3>
-
-<p>I use gvm-prompt which comes with GVM to tell me which Golang enviroment I&rsquo;m currently using.<br/>
-I&rsquo;ve included my prompt for bash as a sample.</p>
-
-<figure class='code'><figcaption><span>Sample Prompt Definition </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="k">if</span><span class="o">[</span><span class="s2">&quot;$(whoami)&quot;</span><span class="o">=</span><span class="s1">&#39;root&#39;</span><span class="o">]</span>; <span class="k">then</span>
-</span><span class='line'><span class="k">  </span><span class="nv">RED</span><span class="o">=</span><span class="s1">&#39;\e[0;31m&#39;</span>
-</span><span class='line'>  <span class="nv">GREEN</span><span class="o">=</span><span class="s1">&#39;\e[0;32m&#39;</span>
-</span><span class='line'>  <span class="nv">NC</span><span class="o">=</span><span class="s1">&#39;\e[0m&#39;</span>
-</span><span class='line'>  <span class="nv">GIT_BRANCH</span><span class="o">=</span><span class="s1">&#39;$(__git_ps1 &quot;(%s)&quot;)&#39;</span>
-</span><span class='line'>  <span class="nv">GVM</span><span class="o">=</span><span class="s1">&#39;$(gvm-prompt &quot;(%s)&quot;)&#39;</span>
-</span><span class='line'>  <span class="nv">PS1</span><span class="o">=</span><span class="s2">&quot;[${RED}\u@\h:\W \t.\d${GREEN}${GIT_BRANCH}$NC ${GVM}] \n &gt;&quot;</span>
-</span><span class='line'><span class="k">else</span>
-</span><span class='line'><span class="k">  </span><span class="nv">RED</span><span class="o">=</span><span class="s1">&#39;\e[0;31m&#39;</span>
-</span><span class='line'>  <span class="nv">GREEN</span><span class="o">=</span><span class="s1">&#39;\e[0;32m&#39;</span>
-</span><span class='line'>  <span class="nv">NC</span><span class="o">=</span><span class="s1">&#39;\e[0m&#39;</span>
-</span><span class='line'>  <span class="nv">GIT_BRANCH</span><span class="o">=</span><span class="s1">&#39;$(__git_ps1 &quot;(%s)&quot;)&#39;</span>
-</span><span class='line'>  <span class="nv">GVM</span><span class="o">=</span><span class="s1">&#39;$(gvm-prompt &quot;(%s)&quot;)&#39;</span>
-</span><span class='line'>  <span class="nv">PS1</span><span class="o">=</span><span class="s2">&quot;[${GREEN}\u@\h:\W ${RED}${GIT_BRANCH}$NC ${GVM}] \n &gt;&quot;</span>
-</span><span class='line'><span class="k">fi</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
 </div>
   
+  
+    <footer>
+      <a rel="full-article" href="/blog/2014/03/11/gvm-with-golang/">Read on &rarr;</a>
+    </footer>
   
 
 </article>
