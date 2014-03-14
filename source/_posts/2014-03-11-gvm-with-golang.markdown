@@ -13,34 +13,31 @@ to manage dependencies.  I wasn't able to find everything I needed in a single
 location which became the genesis for this post. I try to follow this 
 [pattern](http://golang.org/doc/code.html) set by the golang team at Google.
 
+
 For both OSX and Ubuntu you'll need the following dependencies:
 
 #### OSX
 
-``` bash  Install Prerequisites 
+``` bash  
 $ brew install mercurial bzr
 ``` 
 
-{% coderay Install Prerequisites %}
-$ brew install mercurial bzr
-{% endcoderay %}
-
 #### Ubuntu 
 
-``` bash Install Prerequisites start:51 mark:52
+```
 $ sudo apt-get update
 $ sudo apt-get install curl git mercurial make binutils gcc bzr bison -y
 ```
 
 ### Download and Install GVM 
 
-``` bash GVM Installation  
+``` bash 
 $ bash < <(curl -s https://raw.github.com/moovweb/gvm/master/binscripts/gvm-installer) 
 ```
 This adds the following to the bottom of your .bashrc, which you may want to move 
 around according to your liking.
 
-``` bash GVM Configuration 
+``` bash 
 # gvm config
 [[-s "$HOME/.gvm/scripts/gvm"]] && source "$HOME/.gvm/scripts/gvm"
 ```
@@ -50,16 +47,18 @@ around according to your liking.
 We are going to install version golang version 1.2, but you may install any of the
 available versions listed in this command:
 
-``` bash List Available Versions 
+#### List all Go Versions installed
+``` bash 
 $ gvm listall
 ```
 
-``` bash Install Golang 1.2 and Set As Default 
+#### Install Go1.2 and set as default
+``` bash 
 $ gvm install go1.2
 $ gvm use go1.2 --default
 ```
-
-``` bash Create a Project Specific Package Set 
+#### Create a Project specific package set 
+``` bash 
 $ gvm pkgset create ottemo
 $ gvm pkgset use ottemo
 ```
@@ -71,7 +70,8 @@ a specific gvm package set to be used while developing.  Using gvm like
 this helps maintain a clean seperation of concerns by project.  Let's use
 the gvm package set we created above.
 
-``` bash List all Package Sets 
+#### List all package sets 
+``` bash 
 $ gvm pkgset list
 
     global
@@ -82,7 +82,8 @@ Now lets create a workspace relative to our $HOME directory and set up
 the necessary project tree.  We'll use a single command to create our 
 skeleton directory tree.
 
-``` bash Create Directory Tree 
+#### Create Directory Tree 
+``` bash 
 $ mkdir -p $HOME/go/{pkg,bin,src}
 $ git clone https://github.com/ottemo/ottemo-go.git $HOME/go/src/github.com/ottemo/ottemo-go
 ```
@@ -91,13 +92,15 @@ The very last step is to add workspace's GOPATH to your environment.  We need
 to edit our gvm package environment for ottemo.  This will open your favorite 
 editor specified by the environment variable: $EDITOR
 
-``` bash Edit GOPATH 
+#### Edit GOPATH 
+``` bash 
 $ gvm pkgenv ottemo
 ```
 
 You want to edit lines 12 and 16, to add your personal workspace tree.
 
-``` bash Edit GOPATH and PATH Environment Variables 
+#### Edit GOPATH and PATH Environment Variables 
+``` bash 
 # original line
 export GOPATH; GOPATH="/Users/james/.gvm/pkgsets/go1.2/ottemo:$GOPATH"
 # new edited line
@@ -113,7 +116,7 @@ export PATH; PATH="/Users/james/.gvm/pkgsets/go1.2/ottemo/bin:${GVM_OVERLAY_PREF
 I use gvm-prompt which comes with GVM to tell me which Golang enviroment I'm currently using.  
 I've included my prompt for bash as sample.
 
-``` bash Sample Prompt Definition linenos:true
+{% codeblock lang:bash Sample Prompt Definition %}
 if["$(whoami)"='root']; then
   RED='\e[0;31m'
   GREEN='\e[0;32m'
@@ -129,6 +132,6 @@ else
   GVM='$(gvm-prompt "(%s)")'
   PS1="[${GREEN}\u@\h:\W ${RED}${GIT_BRANCH}$NC ${GVM}] \n >"
 fi
-```
+{% endcodeblock %}
 
 
