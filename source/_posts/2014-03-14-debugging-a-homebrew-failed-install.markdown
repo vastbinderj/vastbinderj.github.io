@@ -79,7 +79,9 @@ X11: 2.7.5 => /opt/X11
 This led me to belive I needed to install either Cython or Pyrex.  I decided 
 upon attempting to install Pyrex first.  I quickly learned at the Bazaar 
 website they force Mac users to use Python 2.6 with their install scripts.  
-This means I had to use sudo to get Pyrex to install...
+
+This meant I had to use sudo to get Pyrex to install... I prefer to localize
+my development environments to a user to reduce any possible future dependency issues. 
 
 ``` bash 
 $ sudo /usr/bin/easy_install-2.6 pyrex
@@ -132,6 +134,8 @@ $ brew install bzr
 ```
 
 And I was met with a successful install.  Relief!
+
+I can now `go get` with impunity.
 
 If you find your way here, I hope this helps you along your path when debugging 
 a failed Homebrew install.  A special thanks to the [Homebrew team](https://github.com/Homebrew) 
