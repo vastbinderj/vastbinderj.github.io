@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Python | ascent.io]]></title>
   <link href="http://www.ascent.io/blog/categories/python/atom.xml" rel="self"/>
   <link href="http://www.ascent.io/"/>
-  <updated>2014-03-14T14:16:45-07:00</updated>
+  <updated>2014-03-14T14:20:19-07:00</updated>
   <id>http://www.ascent.io/</id>
   <author>
     <name><![CDATA[James Vastbinder]]></name>
@@ -147,10 +147,11 @@ $ brew update</p>
 <p>$ brew install bzr
 ```</p>
 
-<p>And I was met with a successful install.  If you find your way here, I hope
-this helps you along your path when debugging a failed Homebrew install.  A
-special thanks to the <a href="https://github.com/Homebrew">Homebrew team</a> for working
-hard to provide a great product and even better service!</p>
+<p>And I was met with a successful install.  Relief!</p>
+
+<p>If you find your way here, I hope this helps you along your path when debugging
+a failed Homebrew install.  A special thanks to the <a href="https://github.com/Homebrew">Homebrew team</a>
+for working hard to provide a great product and even better service!</p>
 ]]></content>
   </entry>
   
