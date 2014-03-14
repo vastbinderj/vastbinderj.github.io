@@ -4,7 +4,7 @@
   <title><![CDATA[ascent.io]]></title>
   <link href="http://www.ascent.io/atom.xml" rel="self"/>
   <link href="http://www.ascent.io/"/>
-  <updated>2014-03-14T00:54:06-07:00</updated>
+  <updated>2014-03-14T00:58:10-07:00</updated>
   <id>http://www.ascent.io/</id>
   <author>
     <name><![CDATA[James Vastbinder]]></name>
@@ -163,7 +163,7 @@ editor specified by the environment variable: $EDITOR</p>
 <h3>Notes</h3>
 
 <p>I use gvm-prompt which comes with GVM to tell me which Golang enviroment I&rsquo;m currently using.<br/>
-I&rsquo;ve included my prompt for bash as sample.</p>
+I&rsquo;ve included my prompt for bash as a sample.</p>
 
 <figure class='code'><figcaption><span>Sample Prompt Definition </span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
