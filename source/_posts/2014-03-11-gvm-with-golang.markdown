@@ -114,7 +114,7 @@ export PATH; PATH="/Users/james/.gvm/pkgsets/go1.2/ottemo/bin:${GVM_OVERLAY_PREF
 ### Notes
 
 I use gvm-prompt which comes with GVM to tell me which Golang enviroment I'm currently using.  
-I've included my prompt for bash as sample.
+I've included my prompt for bash as a sample.
 
 {% codeblock lang:bash Sample Prompt Definition %}
 if["$(whoami)"='root']; then
