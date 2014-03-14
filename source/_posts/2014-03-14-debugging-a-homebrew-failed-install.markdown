@@ -131,7 +131,8 @@ $ brew update
 $ brew install bzr
 ```
 
-And I was met with a successful install.  If you find your way here, I hope 
-this helps you along your path when debugging a failed Homebrew install.  A 
-special thanks to the [Homebrew team](https://github.com/Homebrew) for working 
-hard to provide a great product and even better service!
+And I was met with a successful install.  Relief!
+
+If you find your way here, I hope this helps you along your path when debugging 
+a failed Homebrew install.  A special thanks to the [Homebrew team](https://github.com/Homebrew) 
+for working hard to provide a great product and even better service!
