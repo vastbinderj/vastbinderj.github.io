@@ -252,8 +252,10 @@ sent it to a gist.</p>
 <p>
 This led me to belive I needed to install either Cython or Pyrex.  I decided
 upon attempting to install Pyrex first.  I quickly learned at the Bazaar
-website they force Mac users to use Python 2.6 with their install scripts.<br/>
-This means I had to use sudo to get Pyrex to install&hellip;</p>
+website they force Mac users to use Python 2.6 with their install scripts.</p>
+
+<p>This meant I had to use sudo to get Pyrex to install&hellip; I prefer to localize
+my development environments to a user to reduce any possible future dependency issues.</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>sudo /usr/bin/easy_install-2.6 pyrex
@@ -341,6 +343,8 @@ whilst I was fighting this issue.</p>
 
 
 <p>And I was met with a successful install.  Relief!</p>
+
+<p>I can now <code>go get</code> with impunity.</p>
 
 <p>If you find your way here, I hope this helps you along your path when debugging
 a failed Homebrew install.  A special thanks to the <a href="https://github.com/Homebrew">Homebrew team</a>

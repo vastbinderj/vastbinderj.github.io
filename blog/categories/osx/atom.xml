@@ -4,7 +4,7 @@
   <title><![CDATA[Category: OSX | ascent.io]]></title>
   <link href="http://www.ascent.io/blog/categories/osx/atom.xml" rel="self"/>
   <link href="http://www.ascent.io/"/>
-  <updated>2014-03-14T14:20:19-07:00</updated>
+  <updated>2014-03-14T14:54:06-07:00</updated>
   <id>http://www.ascent.io/</id>
   <author>
     <name><![CDATA[James Vastbinder]]></name>
@@ -93,8 +93,10 @@ X11: 2.7.5 => /opt/X11
 ```
 This led me to belive I needed to install either Cython or Pyrex.  I decided
 upon attempting to install Pyrex first.  I quickly learned at the Bazaar
-website they force Mac users to use Python 2.6 with their install scripts.<br/>
-This means I had to use sudo to get Pyrex to install&hellip;</p>
+website they force Mac users to use Python 2.6 with their install scripts.</p>
+
+<p>This meant I had to use sudo to get Pyrex to install&hellip; I prefer to localize
+my development environments to a user to reduce any possible future dependency issues.</p>
 
 <p><code>bash
 $ sudo /usr/bin/easy_install-2.6 pyrex
@@ -148,6 +150,8 @@ $ brew update</p>
 ```</p>
 
 <p>And I was met with a successful install.  Relief!</p>
+
+<p>I can now <code>go get</code> with impunity.</p>
 
 <p>If you find your way here, I hope this helps you along your path when debugging
 a failed Homebrew install.  A special thanks to the <a href="https://github.com/Homebrew">Homebrew team</a>
