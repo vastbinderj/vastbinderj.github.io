@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>ascent.io</title>
+  <title>using gvm with golang - ascent.io</title>
   <meta name="author" content="James Vastbinder">
 
   
@@ -19,7 +19,7 @@ quickly became apparent I needed a way to map a &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://vastbinderj.github.io/">
+  <link rel="canonical" href="http://vastbinderj.github.io/blog/2014/03/11/gvm-with-golang/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -83,16 +83,13 @@ quickly became apparent I needed a way to map a &hellip;">
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
+      <div>
+<article class="hentry" role="article">
   
-  
-  
-    <article>
-      
   <header>
     
-      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
-        <h1 class="entry-title"><a href="/blog/2014/03/11/gvm-with-golang/">Using Gvm With Golang</a></h1>
+      
+        <h1 class="entry-title">Using Gvm With Golang</h1>
       
     
     
@@ -111,14 +108,14 @@ quickly became apparent I needed a way to map a &hellip;">
 
 <time datetime="2014-03-11T00:32:40-07:00" pubdate data-updated="true">Mar 11<span>th</span>, 2014</time>
         
-         | <a href="/blog/2014/03/11/gvm-with-golang/#disqus_thread">Comments</a>
+         | <a href="#disqus_thread">Comments</a>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><h1>Using GVM in your Golang development workflow</h1>
+<div class="entry-content"><h1>Using GVM in your Golang development workflow</h1>
 
 <p>Recently I began work on a project using <a href="http://golang.org/">golang</a>, and it
 quickly became apparent I needed a way to map a Go environment to each project
@@ -301,18 +298,67 @@ I&rsquo;ve included my prompt for bash as sample.</p>
 
 
 </div>
+
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">James Vastbinder</span></span>
+
+      
+
+
+
+
+
+
+
+
   
 
 
-    </article>
+<time datetime="2014-03-11T00:32:40-07:00" pubdate data-updated="true">Mar 11<span>th</span>, 2014</time>
+      
+
+<span class="categories">
   
-  <div class="pagination">
+    <a class='category' href='/blog/categories/gvm/'>GVM</a>, <a class='category' href='/blog/categories/golang/'>Golang</a>, <a class='category' href='/blog/categories/how-to/'>How-To</a>, <a class='category' href='/blog/categories/linux/'>Linux</a>, <a class='category' href='/blog/categories/osx/'>OSX</a>
+  
+</span>
+
+
+    </p>
     
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://vastbinderj.github.io/blog/2014/03/11/gvm-with-golang/" data-via="" data-counturl="http://vastbinderj.github.io/blog/2014/03/11/gvm-with-golang/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
 </div>
+
+    
+    <p class="meta">
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
 <aside class="sidebar">
   
     <section>
@@ -329,7 +375,7 @@ I&rsquo;ve included my prompt for bash as sample.</p>
 <section>
   <h1>GitHub Repos</h1>
   <ul id="gh_repos">
-    <li class="loading">Status updating&#8230;</li>
+    <li class="loading">Status updating...</li>
   </ul>
   
   <a href="https://github.com/vastbinderj">@vastbinderj</a> on GitHub
@@ -371,6 +417,7 @@ I&rsquo;ve included my prompt for bash as sample.</p>
   
 </aside>
 
+
     </div>
   </div>
   <footer role="contentinfo"><p>
@@ -385,7 +432,10 @@ I&rsquo;ve included my prompt for bash as sample.</p>
       var disqus_shortname = 'ascentio';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://vastbinderj.github.io/blog/2014/03/11/gvm-with-golang/';
+        var disqus_url = 'http://vastbinderj.github.io/blog/2014/03/11/gvm-with-golang/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
