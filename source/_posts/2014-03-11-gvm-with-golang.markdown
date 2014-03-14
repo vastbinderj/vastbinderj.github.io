@@ -1,11 +1,10 @@
 ---
 layout: post
-title: "using gvm with golang"
+title: "using gvm with golang in your development workflow"
 date: 2014-03-11 00:32:40 -0700
 comments: true
 categories: [Golang, How-To, GVM, Linux, OSX]
 ---
-# Using GVM in your Golang development workflow
 
 Recently I began work on a project using [golang](http://golang.org/), and it 
 quickly became apparent I needed a way to map a Go environment to each project 
@@ -13,6 +12,7 @@ to manage dependencies.  I wasn't able to find everything I needed in a single
 location which became the genesis for this post. I try to follow this 
 [pattern](http://golang.org/doc/code.html) set by the golang team at Google.
 
+<!-- more -->
 
 For both OSX and Ubuntu you'll need the following dependencies:
 
