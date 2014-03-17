@@ -4,7 +4,7 @@
   <title><![CDATA[Category: OSX | ascent.io]]></title>
   <link href="http://www.ascent.io/blog/categories/osx/atom.xml" rel="self"/>
   <link href="http://www.ascent.io/"/>
-  <updated>2014-03-14T14:54:06-07:00</updated>
+  <updated>2014-03-17T14:21:05-07:00</updated>
   <id>http://www.ascent.io/</id>
   <author>
     <name><![CDATA[James Vastbinder]]></name>
@@ -12,6 +12,136 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[My Personal Bash Prompt]]></title>
+    <link href="http://www.ascent.io/blog/2014/03/17/bash-prompt/"/>
+    <updated>2014-03-17T12:10:00-07:00</updated>
+    <id>http://www.ascent.io/blog/2014/03/17/bash-prompt</id>
+    <content type="html"><![CDATA[<p>I like to have my prompt tell me several things: current directory, who I am
+logged in as, current git branch and language specific context.  Recently, I&rsquo;ve been
+jumping between ruby, python, node and golang as we decide upon the primary engine
+for Ottemo.  It has been an interesting process as we want <a href="http://www.ottemo.io">Ottemo</a>
+ to be rock-solid and secure as well as super easy to setup and of course, blindingly fast.</p>
+
+<!-- more -->
+
+
+<p>This vetting process is better served in a future post as I just want to provide
+a sample light-weight prompt for others to follow, today.</p>
+
+<p>I enjoy a color prompt, so the first thing I do is enable 256 colors in my terminal
+emulator:</p>
+
+<p>``` bash .bash_profile</p>
+
+<h1>uncomment for a colored prompt</h1>
+
+<p>force_color_prompt=yes
+export GREP_OPTIONS=&lsquo;&mdash;color=auto&rsquo;
+export CLICOLOR=1</p>
+
+<h1>set a fancy prompt (non-color, unless we know we &ldquo;want&rdquo; color)</h1>
+
+<p>case &ldquo;$TERM&rdquo; in</p>
+
+<pre><code>xterm-color) color_prompt=yes;;
+</code></pre>
+
+<p>esac</p>
+
+<p>if [ -n &ldquo;$force_color_prompt&rdquo; ]; then</p>
+
+<pre><code>if [ -x /usr/bin/tput ] &amp;&amp; tput setaf 1 &gt;&amp;/dev/null; then
+color_prompt=yes
+else
+color_prompt=
+fi
+</code></pre>
+
+<p>fi
+```</p>
+
+<p>Next, I want to distinguish between when I&rsquo;m logged in as root on computers
+I control, so I change the colors in my prompt for my account and root&rsquo;s account.  You
+can find a great list of colors <a href="http://www.tldp.org/HOWTO/Bash-Prompt-HOWTO/x329.html">available here</a>.</p>
+
+<p>``` bash showme_colors.bash</p>
+
+<h1>!/bin/bash</h1>
+
+<p>#</p>
+
+<h1>This file echoes a bunch of color codes to the</h1>
+
+<h1>terminal to demonstrate what&rsquo;s available.  Each</h1>
+
+<h1>line is the color code of one foreground color,</h1>
+
+<h1>out of 17 (default + 16 escapes), followed by a</h1>
+
+<h1>test use of that color on all nine background</h1>
+
+<h1>colors (default + 8 escapes).</h1>
+
+<p>#</p>
+
+<p>T=&lsquo;gYw&rsquo;   # The test text</p>
+
+<p>echo -e &ldquo;\n                 40m     41m     42m     43m\</p>
+
+<pre><code> 44m     45m     46m     47m";
+</code></pre>
+
+<p>for FGs in &lsquo;    m&rsquo; &lsquo;   1m&rsquo; &lsquo;  30m&rsquo; &lsquo;1;30m&rsquo; &lsquo;  31m&rsquo; &lsquo;1;31m&rsquo; &lsquo;  32m&rsquo; \</p>
+
+<pre><code>       '1;32m' '  33m' '1;33m' '  34m' '1;34m' '  35m' '1;35m' \
+       '  36m' '1;36m' '  37m' '1;37m';
+</code></pre>
+
+<p>  do FG=${FGs// /}
+  echo -en &ldquo; $FGs \033[$FG  $T  &rdquo;
+  for BG in 40m 41m 42m 43m 44m 45m 46m 47m;</p>
+
+<pre><code>do echo -en "$EINS \033[$FG\033[$BG  $T  \033[0m";
+</code></pre>
+
+<p>  done
+  echo;
+done
+echo
+```</p>
+
+<p>Here is the excerpt from my dotfiles where I set my prompt.  Its not pretty but
+it is functional.</p>
+
+<p>``` bash .bash_profile</p>
+
+<h1>give root a different colored prompt so I have a visual cue</h1>
+
+<p>if [ &ldquo;$(whoami)&rdquo; = &lsquo;root&rsquo; ]; then
+  RED=&lsquo;\e[0;31m&rsquo;
+  GREEN=&lsquo;\e[0;32m&rsquo;
+  NC=&lsquo;\e[0m&rsquo;
+  GIT_BRANCH=&lsquo;$(<strong>git_ps1 &ldquo;(%s)&rdquo;)&rsquo;
+  GVM=&lsquo;$(gvm-prompt &ldquo;(%s)&rdquo;)&rsquo;
+  PS1=&ldquo;[${RED}\u@\h:\W \t.\d${GREEN}${GIT_BRANCH}${NC} ${GVM}] \n > &rdquo;
+else
+  RED=&lsquo;\e[0;31m&rsquo;
+  GREEN=&lsquo;\e[0;32m&rsquo;
+  NC=&lsquo;\e[0m&rsquo;
+  GIT_BRANCH=&lsquo;$(</strong>git_ps1 &ldquo;(%s)&rdquo;)&rsquo;
+  GVM=&lsquo;$(gvm-prompt &ldquo;(%s)&rdquo;)&rsquo;
+  PS1=&ldquo;[${GREEN}\u@\h:\W ${RED}${GIT_BRANCH}${NC} ${GVM}] \n > &rdquo;
+fi
+unset color_prompt force_color_prompt
+```</p>
+
+<p>And finally an example of my current bash prompt:</p>
+
+<p><img src="/images/bash-prompt/shell_prompt.png"></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Debugging a Homebrew Failed Install]]></title>

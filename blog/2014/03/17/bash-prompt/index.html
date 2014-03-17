@@ -1,0 +1,469 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>My Personal Bash Prompt - ascent.io</title>
+  <meta name="author" content="James Vastbinder">
+
+  
+  <meta name="description" content="I like to have my prompt tell me several things: current directory, who I am
+logged in as, current git branch and language specific context. Recently &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.ascent.io/blog/2014/03/17/bash-prompt/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="ascent.io" type="application/atom+xml">
+  <link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-48860746-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <div id="logo">
+  	<div id="logoLeft">{</div>
+  	<div id="logoText">jwv</div>
+  	<div id="logoRight">}</div>
+  	<div class="clear"></div>
+  </div>
+  <h1><a href="/">ascent.io</a></h1>
+  
+    <h2>random musings and unkept thoughts</h2>
+  
+  <div class="clear"></div>
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:www.ascent.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      
+        <h1 class="entry-title">My Personal Bash Prompt</h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-03-17T12:10:00-07:00" pubdate data-updated="true">Mar 17<span>th</span>, 2014</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>I like to have my prompt tell me several things: current directory, who I am
+logged in as, current git branch and language specific context.  Recently, I&rsquo;ve been
+jumping between ruby, python, node and golang as we decide upon the primary engine
+for Ottemo.  It has been an interesting process as we want <a href="http://www.ottemo.io">Ottemo</a>
+ to be rock-solid and secure as well as super easy to setup and of course, blindingly fast.</p>
+
+<!-- more -->
+
+
+<p>This vetting process is better served in a future post as I just want to provide
+a sample light-weight prompt for others to follow, today.</p>
+
+<p>I enjoy a color prompt, so the first thing I do is enable 256 colors in my terminal
+emulator:</p>
+
+<figure class='code'><figcaption><span>.bash_profile</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># uncomment for a colored prompt</span>
+</span><span class='line'><span class="nv">force_color_prompt</span><span class="o">=</span>yes
+</span><span class='line'><span class="nb">export </span><span class="nv">GREP_OPTIONS</span><span class="o">=</span><span class="s1">&#39;--color=auto&#39;</span>
+</span><span class='line'><span class="nb">export </span><span class="nv">CLICOLOR</span><span class="o">=</span>1
+</span><span class='line'>
+</span><span class='line'><span class="c"># set a fancy prompt (non-color, unless we know we &quot;want&quot; color)</span>
+</span><span class='line'><span class="k">case</span> <span class="s2">&quot;$TERM&quot;</span> in
+</span><span class='line'>    xterm-color<span class="o">)</span> <span class="nv">color_prompt</span><span class="o">=</span>yes;;
+</span><span class='line'><span class="k">esac</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">if</span> <span class="o">[</span> -n <span class="s2">&quot;$force_color_prompt&quot;</span> <span class="o">]</span>; <span class="k">then</span>
+</span><span class='line'><span class="k">    if</span> <span class="o">[</span> -x /usr/bin/tput <span class="o">]</span> <span class="o">&amp;&amp;</span> tput setaf 1 &gt;&amp;/dev/null; <span class="k">then</span>
+</span><span class='line'><span class="k">  </span><span class="nv">color_prompt</span><span class="o">=</span>yes
+</span><span class='line'>    <span class="k">else</span>
+</span><span class='line'><span class="k">  </span><span class="nv">color_prompt</span><span class="o">=</span>
+</span><span class='line'>    <span class="k">fi</span>
+</span><span class='line'><span class="k">fi</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></p>
+
+<p>Next, I want to distinguish between when I&rsquo;m logged in as root on computers
+I control, so I change the colors in my prompt for my account and root&rsquo;s account.  You
+can find a great list of colors <a href="http://www.tldp.org/HOWTO/Bash-Prompt-HOWTO/x329.html">available here</a>.</p>
+
+<figure class='code'><figcaption><span>showme_colors.bash</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c">#!/bin/bash</span>
+</span><span class='line'><span class="c">#</span>
+</span><span class='line'><span class="c">#   This file echoes a bunch of color codes to the </span>
+</span><span class='line'><span class="c">#   terminal to demonstrate what&#39;s available.  Each </span>
+</span><span class='line'><span class="c">#   line is the color code of one foreground color,</span>
+</span><span class='line'><span class="c">#   out of 17 (default + 16 escapes), followed by a </span>
+</span><span class='line'><span class="c">#   test use of that color on all nine background </span>
+</span><span class='line'><span class="c">#   colors (default + 8 escapes).</span>
+</span><span class='line'><span class="c">#</span>
+</span><span class='line'>
+</span><span class='line'><span class="nv">T</span><span class="o">=</span><span class="s1">&#39;gYw&#39;</span>   <span class="c"># The test text</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">echo</span> -e <span class="s2">&quot;\n                 40m     41m     42m     43m\</span>
+</span><span class='line'><span class="s2">     44m     45m     46m     47m&quot;</span>;
+</span><span class='line'>
+</span><span class='line'><span class="k">for </span>FGs in <span class="s1">&#39;    m&#39;</span> <span class="s1">&#39;   1m&#39;</span> <span class="s1">&#39;  30m&#39;</span> <span class="s1">&#39;1;30m&#39;</span> <span class="s1">&#39;  31m&#39;</span> <span class="s1">&#39;1;31m&#39;</span> <span class="s1">&#39;  32m&#39;</span> <span class="se">\</span>
+</span><span class='line'>           <span class="s1">&#39;1;32m&#39;</span> <span class="s1">&#39;  33m&#39;</span> <span class="s1">&#39;1;33m&#39;</span> <span class="s1">&#39;  34m&#39;</span> <span class="s1">&#39;1;34m&#39;</span> <span class="s1">&#39;  35m&#39;</span> <span class="s1">&#39;1;35m&#39;</span> <span class="se">\</span>
+</span><span class='line'>           <span class="s1">&#39;  36m&#39;</span> <span class="s1">&#39;1;36m&#39;</span> <span class="s1">&#39;  37m&#39;</span> <span class="s1">&#39;1;37m&#39;</span>;
+</span><span class='line'>  <span class="k">do </span><span class="nv">FG</span><span class="o">=</span><span class="k">${</span><span class="nv">FGs</span><span class="p">// /</span><span class="k">}</span>
+</span><span class='line'>  <span class="nb">echo</span> -en <span class="s2">&quot; $FGs \033[$FG  $T  &quot;</span>
+</span><span class='line'>  <span class="k">for </span>BG in 40m 41m 42m 43m 44m 45m 46m 47m;
+</span><span class='line'>    <span class="k">do </span><span class="nb">echo</span> -en <span class="s2">&quot;$EINS \033[$FG\033[$BG  $T  \033[0m&quot;</span>;
+</span><span class='line'>  <span class="k">done</span>
+</span><span class='line'><span class="k">  </span><span class="nb">echo</span>;
+</span><span class='line'><span class="k">done</span>
+</span><span class='line'><span class="nb">echo</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Here is the excerpt from my dotfiles where I set my prompt.  Its not pretty but
+it is functional.</p>
+
+<figure class='code'><figcaption><span>.bash_profile</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># give root a different colored prompt so I have a visual cue</span>
+</span><span class='line'><span class="k">if</span> <span class="o">[</span> <span class="s2">&quot;$(whoami)&quot;</span> <span class="o">=</span> <span class="s1">&#39;root&#39;</span> <span class="o">]</span>; <span class="k">then</span>
+</span><span class='line'><span class="k">  </span><span class="nv">RED</span><span class="o">=</span><span class="s1">&#39;\e[0;31m&#39;</span>
+</span><span class='line'>  <span class="nv">GREEN</span><span class="o">=</span><span class="s1">&#39;\e[0;32m&#39;</span>
+</span><span class='line'>  <span class="nv">NC</span><span class="o">=</span><span class="s1">&#39;\e[0m&#39;</span>
+</span><span class='line'>  <span class="nv">GIT_BRANCH</span><span class="o">=</span><span class="s1">&#39;$(__git_ps1 &quot;(%s)&quot;)&#39;</span>
+</span><span class='line'>  <span class="nv">GVM</span><span class="o">=</span><span class="s1">&#39;$(gvm-prompt &quot;(%s)&quot;)&#39;</span>
+</span><span class='line'>  <span class="nv">PS1</span><span class="o">=</span><span class="s2">&quot;[${RED}\u@\h:\W \t.\d${GREEN}${GIT_BRANCH}${NC} ${GVM}] \n &gt; &quot;</span>
+</span><span class='line'><span class="k">else</span>
+</span><span class='line'><span class="k">  </span><span class="nv">RED</span><span class="o">=</span><span class="s1">&#39;\e[0;31m&#39;</span>
+</span><span class='line'>  <span class="nv">GREEN</span><span class="o">=</span><span class="s1">&#39;\e[0;32m&#39;</span>
+</span><span class='line'>  <span class="nv">NC</span><span class="o">=</span><span class="s1">&#39;\e[0m&#39;</span>
+</span><span class='line'>  <span class="nv">GIT_BRANCH</span><span class="o">=</span><span class="s1">&#39;$(__git_ps1 &quot;(%s)&quot;)&#39;</span>
+</span><span class='line'>  <span class="nv">GVM</span><span class="o">=</span><span class="s1">&#39;$(gvm-prompt &quot;(%s)&quot;)&#39;</span>
+</span><span class='line'>  <span class="nv">PS1</span><span class="o">=</span><span class="s2">&quot;[${GREEN}\u@\h:\W ${RED}${GIT_BRANCH}${NC} ${GVM}] \n &gt; &quot;</span>
+</span><span class='line'><span class="k">fi</span>
+</span><span class='line'><span class="nb">unset </span>color_prompt force_color_prompt
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>And finally an example of my current bash prompt:</p>
+
+<p><img src="/images/bash-prompt/shell_prompt.png"></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">James Vastbinder</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-03-17T12:10:00-07:00" pubdate data-updated="true">Mar 17<span>th</span>, 2014</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/bash/'>Bash</a>, <a class='category' href='/blog/categories/how-to/'>How-To</a>, <a class='category' href='/blog/categories/linux/'>Linux</a>, <a class='category' href='/blog/categories/osx/'>OSX</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://www.ascent.io/blog/2014/03/17/bash-prompt/" data-via="ethlor" data-counturl="http://www.ascent.io/blog/2014/03/17/bash-prompt/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left articlenav" href="/blog/2014/03/14/debugging-a-homebrew-failed-install/" title="Previous Post: Debugging a Homebrew Failed Install">&laquo; Debugging a Homebrew Failed Install</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/03/17/bash-prompt/">My Personal Bash Prompt</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/03/14/debugging-a-homebrew-failed-install/">Debugging a Homebrew Failed Install</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/03/11/gvm-with-golang/">Using Gvm With Golang in Your Development Workflow</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/vastbinderj">@vastbinderj</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'vastbinderj',
+            count: 5,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+<section class="googleplus">
+  <h1>
+    <a href="https://plus.google.com/james.vastbinder@gmail.com?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - James Vastbinder -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'ascentio';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://www.ascent.io/blog/2014/03/17/bash-prompt/';
+        var disqus_url = 'http://www.ascent.io/blog/2014/03/17/bash-prompt/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
