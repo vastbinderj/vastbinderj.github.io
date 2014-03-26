@@ -9,8 +9,8 @@
   <meta name="author" content="James Vastbinder">
 
   
-  <meta name="description" content="I like to have my prompt tell me several things: current directory, who I am
-logged in as, current git branch and language specific context. Recently &hellip;">
+  <meta name="description" content="I&rsquo;ve been working with Go for a few weeks now and thought I had vim set up to
+format my code using Fmt every time I saved. I did and I didn& &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -84,6 +84,61 @@ logged in as, current git branch and language specific context. Recently &hellip
   <div id="main">
     <div id="content">
       
+
+
+    <article class="post">
+  <header>
+    
+      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
+        <h1 class="entry-title"><a href="/blog/2014/03/26/go-fmt-vim/">Run Fmt Upon Save in Vim</a></h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-03-26T07:18:32-07:00" pubdate data-updated="true">Mar 26<span>th</span>, 2014</time>
+        
+         | <a href="/blog/2014/03/26/go-fmt-vim/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I&rsquo;ve been working with Go for a few weeks now and thought I had vim set up to
+format my code using Fmt every time I saved.  I did and I didn&rsquo;t.</p>
+
+<p>The one liner which will format your code is</p>
+
+<figure class='code'><figcaption><span>.vimrc</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='vim'><span class='line'><span class="c">&quot; format golang upon save</span>
+</span><span class='line'>autocmd <span class="nb">FileType</span> <span class="k">go</span> autocmd <span class="nb">BufWritePre</span> <span class="p">&lt;</span>buffer<span class="p">&gt;</span> Fmt
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2014/03/26/go-fmt-vim/">Read on &rarr;</a>
+    </footer>
+  
+
+</article>
 
 
     <article class="post">

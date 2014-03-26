@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Golang | ascent.io]]></title>
   <link href="http://www.ascent.io/blog/categories/golang/atom.xml" rel="self"/>
   <link href="http://www.ascent.io/"/>
-  <updated>2014-03-17T14:31:46-07:00</updated>
+  <updated>2014-03-26T08:16:11-07:00</updated>
   <id>http://www.ascent.io/</id>
   <author>
     <name><![CDATA[James Vastbinder]]></name>
@@ -12,6 +12,98 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Run Fmt Upon Save in Vim]]></title>
+    <link href="http://www.ascent.io/blog/2014/03/26/go-fmt-vim/"/>
+    <updated>2014-03-26T07:18:32-07:00</updated>
+    <id>http://www.ascent.io/blog/2014/03/26/go-fmt-vim</id>
+    <content type="html"><![CDATA[<p>I&rsquo;ve been working with Go for a few weeks now and thought I had vim set up to
+format my code using Fmt every time I saved.  I did and I didn&rsquo;t.</p>
+
+<p>The one liner which will format your code is</p>
+
+<p><code>vim .vimrc
+" format golang upon save
+autocmd FileType go autocmd BufWritePre &lt;buffer&gt; Fmt
+</code></p>
+
+<!-- more -->
+
+
+<p>However, there is a little more to the puzzle.  (I prefer spaces to tabs, but
+this is not a discussion on tabs vs. spaces.)  In my .vimrc I have my default
+settings for managing tabs and spaces to default to 2 spaces and to convert
+tabs to spaces when I save a file.</p>
+
+<p><code>vim
+set tabstop=2             " number of spaces that a &lt;tab&gt; represents in a file
+set shiftwidth=2          " number of spaces to use for (auto)indent
+set expandtab             " use spaces instead of tabs
+set softtabstop=2         " number of spaces that a &lt;tab&gt; represents
+set smarttab              " smart handling of tabs when inserting or deleting
+</code></p>
+
+<p>This meant that when I opened a Golang formatted file, as soon as I saved it,
+gone were the tabs in my Golang files.  I want to adhere to the standard, so I
+needed to create an exception for Go files.</p>
+
+<p><code>vim
+autocmd FileType go setlocal shiftwidth=8 tabstop=8 softtabstop=8     " set tab stops to 8 for Go files
+autocmd FileType go setlocal noexpandtab                              " don't expand tabs to spaces for Go files
+</code></p>
+
+<p>This fixed my problems when saving Go formatted files and saves me from running
+<code>go Fmt</code> on my files outside of vim.  Here is my final set of vim customizations:</p>
+
+<p>``` vim .vimrc
+&ldquo; Go tagbar config
+let g:tagbar_type_go = {</p>
+
+<pre><code>\ 'ctagstype' : 'go',
+\ 'kinds'     : [
+    \ 'p:package',
+    \ 'i:imports:1',
+    \ 'c:constants',
+    \ 'v:variables',
+    \ 't:types',
+    \ 'n:interfaces',
+    \ 'w:fields',
+    \ 'e:embedded',
+    \ 'm:methods',
+    \ 'r:constructor',
+    \ 'f:functions'
+\ ],
+\ 'sro' : '.',
+\ 'kind2scope' : {
+    \ 't' : 'ctype',
+    \ 'n' : 'ntype'
+\ },
+\ 'scope2kind' : {
+    \ 'ctype' : 't',
+    \ 'ntype' : 'n'
+\ },
+\ 'ctagsbin'  : 'gotags',
+\ 'ctagsargs' : '-sort -silent'
+</code></pre>
+
+<p>\ }</p>
+
+<p>&ldquo; Golang customizations
+au BufWritePost <em>.go silent! !ctags -R &mdash;exclude=</em>.js,*.html &amp;        &rdquo; generate go ctags upon save
+autocmd FileType go autocmd BufWritePre <buffer> Fmt                  &ldquo; format files upon save in GO
+let g:syntastic_go_checkers = [&lsquo;go&rsquo;,&lsquo;golint&rsquo;]                         &rdquo; use golint for syntax checking in Go
+let g:godef_same_file_in_same_window=1                                &ldquo; when in go, move the cursor if in same file
+autocmd FileType go setlocal shiftwidth=8 tabstop=8 softtabstop=8     &rdquo; set tab stops to 8 for Go files
+autocmd FileType go setlocal noexpandtab                              &ldquo; don&rsquo;t expand tabs to spaces for Go files
+```</p>
+
+<p>If you see any issues with my customizations or think I should do something
+differently, let me know.</p>
+
+<p>Cheers</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[using gvm with golang in your development workflow]]></title>

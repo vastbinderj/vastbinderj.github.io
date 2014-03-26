@@ -1,0 +1,447 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Run Fmt Upon Save in Vim - ascent.io</title>
+  <meta name="author" content="James Vastbinder">
+
+  
+  <meta name="description" content="I&rsquo;ve been working with Go for a few weeks now and thought I had vim set up to
+format my code using Fmt every time I saved. I did and I didn& &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.ascent.io/blog/2014/03/26/go-fmt-vim/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="ascent.io" type="application/atom+xml">
+  <link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-48860746-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <div id="logo">
+  	<div id="logoLeft">{</div>
+  	<div id="logoText">jwv</div>
+  	<div id="logoRight">}</div>
+  	<div class="clear"></div>
+  </div>
+  <h1><a href="/">ascent.io</a></h1>
+  
+    <h2>random musings and unkept thoughts</h2>
+  
+  <div class="clear"></div>
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:www.ascent.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      
+        <h1 class="entry-title">Run Fmt Upon Save in Vim</h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-03-26T07:18:32-07:00" pubdate data-updated="true">Mar 26<span>th</span>, 2014</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>I&rsquo;ve been working with Go for a few weeks now and thought I had vim set up to
+format my code using Fmt every time I saved.  I did and I didn&rsquo;t.</p>
+
+<p>The one liner which will format your code is</p>
+
+<figure class='code'><figcaption><span>.vimrc</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='vim'><span class='line'><span class="c">&quot; format golang upon save</span>
+</span><span class='line'>autocmd <span class="nb">FileType</span> <span class="k">go</span> autocmd <span class="nb">BufWritePre</span> <span class="p">&lt;</span>buffer<span class="p">&gt;</span> Fmt
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<!-- more -->
+
+
+<p>However, there is a little more to the puzzle.  (I prefer spaces to tabs, but
+this is not a discussion on tabs vs. spaces.)  In my .vimrc I have my default
+settings for managing tabs and spaces to default to 2 spaces and to convert
+tabs to spaces when I save a file.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='vim'><span class='line'><span class="k">set</span> <span class="nb">tabstop</span><span class="p">=</span><span class="m">2</span>             <span class="c">&quot; number of spaces that a &lt;tab&gt; represents in a file</span>
+</span><span class='line'><span class="k">set</span> <span class="nb">shiftwidth</span><span class="p">=</span><span class="m">2</span>          <span class="c">&quot; number of spaces to use for (auto)indent</span>
+</span><span class='line'><span class="k">set</span> <span class="nb">expandtab</span>             <span class="c">&quot; use spaces instead of tabs</span>
+</span><span class='line'><span class="k">set</span> <span class="nb">softtabstop</span><span class="p">=</span><span class="m">2</span>         <span class="c">&quot; number of spaces that a &lt;tab&gt; represents</span>
+</span><span class='line'><span class="k">set</span> <span class="nb">smarttab</span>              <span class="c">&quot; smart handling of tabs when inserting or deleting</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></p>
+
+<p>This meant that when I opened a Golang formatted file, as soon as I saved it,
+gone were the tabs in my Golang files.  I want to adhere to the standard, so I
+needed to create an exception for Go files.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='vim'><span class='line'>autocmd <span class="nb">FileType</span> <span class="k">go</span> <span class="k">setlocal</span> <span class="nb">shiftwidth</span><span class="p">=</span><span class="m">8</span> <span class="nb">tabstop</span><span class="p">=</span><span class="m">8</span> <span class="nb">softtabstop</span><span class="p">=</span><span class="m">8</span>     <span class="c">&quot; set tab stops to 8 for Go files</span>
+</span><span class='line'>autocmd <span class="nb">FileType</span> <span class="k">go</span> <span class="k">setlocal</span> <span class="nb">noexpandtab</span>                              <span class="c">&quot; don&#39;t expand tabs to spaces for Go files</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This fixed my problems when saving Go formatted files and saves me from running
+<code>go Fmt</code> on my files outside of vim.  Here is my final set of vim customizations:</p>
+
+<figure class='code'><figcaption><span>.vimrc</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+</pre></td><td class='code'><pre><code class='vim'><span class='line'><span class="c">&quot; Go tagbar config</span>
+</span><span class='line'><span class="k">let</span> <span class="k">g</span>:tagbar_type_go <span class="p">=</span> {
+</span><span class='line'>    \ <span class="s1">&#39;ctagstype&#39;</span> : <span class="s1">&#39;go&#39;</span><span class="p">,</span>
+</span><span class='line'>    \ <span class="s1">&#39;kinds&#39;</span>     : [
+</span><span class='line'>        \ <span class="s1">&#39;p:package&#39;</span><span class="p">,</span>
+</span><span class='line'>        \ <span class="s1">&#39;i:imports:1&#39;</span><span class="p">,</span>
+</span><span class='line'>        \ <span class="s1">&#39;c:constants&#39;</span><span class="p">,</span>
+</span><span class='line'>        \ <span class="s1">&#39;v:variables&#39;</span><span class="p">,</span>
+</span><span class='line'>        \ <span class="s1">&#39;t:types&#39;</span><span class="p">,</span>
+</span><span class='line'>        \ <span class="s1">&#39;n:interfaces&#39;</span><span class="p">,</span>
+</span><span class='line'>        \ <span class="s1">&#39;w:fields&#39;</span><span class="p">,</span>
+</span><span class='line'>        \ <span class="s1">&#39;e:embedded&#39;</span><span class="p">,</span>
+</span><span class='line'>        \ <span class="s1">&#39;m:methods&#39;</span><span class="p">,</span>
+</span><span class='line'>        \ <span class="s1">&#39;r:constructor&#39;</span><span class="p">,</span>
+</span><span class='line'>        \ <span class="s1">&#39;f:functions&#39;</span>
+</span><span class='line'>    \ ]<span class="p">,</span>
+</span><span class='line'>    \ <span class="s1">&#39;sro&#39;</span> : <span class="s1">&#39;.&#39;</span><span class="p">,</span>
+</span><span class='line'>    \ <span class="s1">&#39;kind2scope&#39;</span> : {
+</span><span class='line'>        \ <span class="s1">&#39;t&#39;</span> : <span class="s1">&#39;ctype&#39;</span><span class="p">,</span>
+</span><span class='line'>        \ <span class="s1">&#39;n&#39;</span> : <span class="s1">&#39;ntype&#39;</span>
+</span><span class='line'>    \ }<span class="p">,</span>
+</span><span class='line'>    \ <span class="s1">&#39;scope2kind&#39;</span> : {
+</span><span class='line'>        \ <span class="s1">&#39;ctype&#39;</span> : <span class="s1">&#39;t&#39;</span><span class="p">,</span>
+</span><span class='line'>        \ <span class="s1">&#39;ntype&#39;</span> : <span class="s1">&#39;n&#39;</span>
+</span><span class='line'>    \ }<span class="p">,</span>
+</span><span class='line'>    \ <span class="s1">&#39;ctagsbin&#39;</span>  : <span class="s1">&#39;gotags&#39;</span><span class="p">,</span>
+</span><span class='line'>    \ <span class="s1">&#39;ctagsargs&#39;</span> : <span class="s1">&#39;-sort -silent&#39;</span>
+</span><span class='line'>\ }
+</span><span class='line'>
+</span><span class='line'><span class="c">&quot; Golang customizations</span>
+</span><span class='line'><span class="k">au</span> <span class="nb">BufWritePost</span> *.<span class="k">go</span> <span class="k">silent</span><span class="p">!</span> <span class="p">!</span>ctags <span class="p">-</span>R <span class="p">--</span>exclude<span class="p">=</span>*.<span class="nb">js</span><span class="p">,</span>*.html &amp;        <span class="c">&quot; generate go ctags upon save</span>
+</span><span class='line'>autocmd <span class="nb">FileType</span> <span class="k">go</span> autocmd <span class="nb">BufWritePre</span> <span class="p">&lt;</span>buffer<span class="p">&gt;</span> Fmt                  <span class="c">&quot; format files upon save in GO</span>
+</span><span class='line'><span class="k">let</span> <span class="k">g</span>:syntastic_go_checkers <span class="p">=</span> [<span class="s1">&#39;go&#39;</span><span class="p">,</span><span class="s1">&#39;golint&#39;</span>]                         <span class="c">&quot; use golint for syntax checking in Go</span>
+</span><span class='line'><span class="k">let</span> <span class="k">g</span>:godef_same_file_in_same_window<span class="p">=</span><span class="m">1</span>                                <span class="c">&quot; when in go, move the cursor if in same file </span>
+</span><span class='line'>autocmd <span class="nb">FileType</span> <span class="k">go</span> <span class="k">setlocal</span> <span class="nb">shiftwidth</span><span class="p">=</span><span class="m">8</span> <span class="nb">tabstop</span><span class="p">=</span><span class="m">8</span> <span class="nb">softtabstop</span><span class="p">=</span><span class="m">8</span>     <span class="c">&quot; set tab stops to 8 for Go files</span>
+</span><span class='line'>autocmd <span class="nb">FileType</span> <span class="k">go</span> <span class="k">setlocal</span> <span class="nb">noexpandtab</span>                              <span class="c">&quot; don&#39;t expand tabs to spaces for Go files</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>If you see any issues with my customizations or think I should do something
+differently, let me know.</p>
+
+<p>Cheers</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">James Vastbinder</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-03-26T07:18:32-07:00" pubdate data-updated="true">Mar 26<span>th</span>, 2014</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/fmt/'>Fmt</a>, <a class='category' href='/blog/categories/golang/'>Golang</a>, <a class='category' href='/blog/categories/how-to/'>How-To</a>, <a class='category' href='/blog/categories/vim/'>Vim</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://www.ascent.io/blog/2014/03/26/go-fmt-vim/" data-via="ethlor" data-counturl="http://www.ascent.io/blog/2014/03/26/go-fmt-vim/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left articlenav" href="/blog/2014/03/17/bash-prompt/" title="Previous Post: My Personal Bash Prompt">&laquo; My Personal Bash Prompt</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/03/26/go-fmt-vim/">Run Fmt Upon Save in Vim</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/03/17/bash-prompt/">My Personal Bash Prompt</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/03/14/debugging-a-homebrew-failed-install/">Debugging a Homebrew Failed Install</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/03/11/gvm-with-golang/">Using Gvm With Golang in Your Development Workflow</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/vastbinderj">@vastbinderj</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'vastbinderj',
+            count: 5,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+<section class="googleplus">
+  <h1>
+    <a href="https://plus.google.com/james.vastbinder@gmail.com?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - James Vastbinder -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'ascentio';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://www.ascent.io/blog/2014/03/26/go-fmt-vim/';
+        var disqus_url = 'http://www.ascent.io/blog/2014/03/26/go-fmt-vim/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
