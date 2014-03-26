@@ -118,7 +118,7 @@ format my code using Fmt every time I saved. I did and I didn& &hellip;">
 <div class="entry-content"><p>I&rsquo;ve been working with Go for a few weeks now and thought I had vim set up to
 format my code using Fmt every time I saved.  I did and I didn&rsquo;t.</p>
 
-<p>The one liner which will format your code is</p>
+<p>The one liner, which will format your code is below:</p>
 
 <figure class='code'><figcaption><span>.vimrc</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -133,9 +133,12 @@ format my code using Fmt every time I saved.  I did and I didn&rsquo;t.</p>
 
 
 <p>However, there is a little more to the puzzle.  (I prefer spaces to tabs, but
-this is not a discussion on tabs vs. spaces.)  In my .vimrc I have my default
-settings for managing tabs and spaces to default to 2 spaces and to convert
-tabs to spaces when I save a file.</p>
+this is not a discussion on tabs vs. spaces.)  Somehow this formatting was being
+set upon save.</p>
+
+<p>I quickly found the culprit.  In my .vimrc I have my default settings for
+managing tabs and spaces to default to 2 spaces and to convert tabs to
+spaces when I save a file.</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -144,7 +147,7 @@ tabs to spaces when I save a file.</p>
 <span class='line-number'>5</span>
 </pre></td><td class='code'><pre><code class='vim'><span class='line'><span class="k">set</span> <span class="nb">tabstop</span><span class="p">=</span><span class="m">2</span>             <span class="c">&quot; number of spaces that a &lt;tab&gt; represents in a file</span>
 </span><span class='line'><span class="k">set</span> <span class="nb">shiftwidth</span><span class="p">=</span><span class="m">2</span>          <span class="c">&quot; number of spaces to use for (auto)indent</span>
-</span><span class='line'><span class="k">set</span> <span class="nb">expandtab</span>             <span class="c">&quot; use spaces instead of tabs</span>
+</span><span class='line'><span class="k">set</span> <span class="nb">expandtab</span>             <span class="c">&quot; expand tabs to spaces</span>
 </span><span class='line'><span class="k">set</span> <span class="nb">softtabstop</span><span class="p">=</span><span class="m">2</span>         <span class="c">&quot; number of spaces that a &lt;tab&gt; represents</span>
 </span><span class='line'><span class="k">set</span> <span class="nb">smarttab</span>              <span class="c">&quot; smart handling of tabs when inserting or deleting</span>
 </span></code></pre></td></tr></table></div></figure>
@@ -153,8 +156,13 @@ tabs to spaces when I save a file.</p>
 <p></p>
 
 <p>This meant that when I opened a Golang formatted file, as soon as I saved it,
-gone were the tabs in my Golang files.  I want to adhere to the standard, so I
-needed to create an exception for Go files.</p>
+gone were the tabs in my Golang files.  I wanted to adhere to the standard, so I
+needed to find a way to make an exception for Go source files.  According to
+<a href="http://golang.org/doc/effective_go.html#formatting">the Go standards</a> they use tabs
+with a tabstop of 8.</p>
+
+<p>To make an exception for Go source code, I am using the <code>setlocal</code> identifier
+to apply the exception to my global settings. Here is the result:</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
