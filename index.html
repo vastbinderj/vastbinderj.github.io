@@ -121,6 +121,10 @@ format my code using Fmt every time I saved. I did and I didn& &hellip;">
   <div class="entry-content"><p>I&rsquo;ve been working with Go for a few weeks now and thought I had vim set up to
 format my code using Fmt every time I saved.  I did and I didn&rsquo;t.</p>
 
+<p>You see, we are working on the authorization piece of Ottemo and since many
+projects can benefit from the work we are doing, we wanted to submit our
+OAUTH2 work to the <a href="http://martini.codegangsta.io/">Martini project</a>.</p>
+
 <p>The one liner, which will format your code is below:</p>
 
 <figure class='code'><figcaption><span>.vimrc</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -128,8 +132,6 @@ format my code using Fmt every time I saved.  I did and I didn&rsquo;t.</p>
 </pre></td><td class='code'><pre><code class='vim'><span class='line'><span class="c">&quot; format golang upon save</span>
 </span><span class='line'>autocmd <span class="nb">FileType</span> <span class="k">go</span> autocmd <span class="nb">BufWritePre</span> <span class="p">&lt;</span>buffer<span class="p">&gt;</span> Fmt
 </span></code></pre></td></tr></table></div></figure>
-
-
 
 
 </div>

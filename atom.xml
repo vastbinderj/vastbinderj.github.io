@@ -4,7 +4,7 @@
   <title><![CDATA[ascent.io]]></title>
   <link href="http://www.ascent.io/atom.xml" rel="self"/>
   <link href="http://www.ascent.io/"/>
-  <updated>2014-03-26T08:33:07-07:00</updated>
+  <updated>2014-03-26T09:47:58-07:00</updated>
   <id>http://www.ascent.io/</id>
   <author>
     <name><![CDATA[James Vastbinder]]></name>
@@ -21,6 +21,10 @@
     <content type="html"><![CDATA[<p>I&rsquo;ve been working with Go for a few weeks now and thought I had vim set up to
 format my code using Fmt every time I saved.  I did and I didn&rsquo;t.</p>
 
+<p>You see, we are working on the authorization piece of Ottemo and since many
+projects can benefit from the work we are doing, we wanted to submit our
+OAUTH2 work to the <a href="http://martini.codegangsta.io/">Martini project</a>.</p>
+
 <p>The one liner, which will format your code is below:</p>
 
 <figure class='code'><figcaption><span>.vimrc</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -30,14 +34,13 @@ format my code using Fmt every time I saved.  I did and I didn&rsquo;t.</p>
 </span></code></pre></td></tr></table></div></figure>
 
 
-
-
 <!-- more -->
 
 
-<p>However, there is a little more to the puzzle.  (I prefer spaces to tabs, but
-this is not a discussion on tabs vs. spaces.)  Somehow this formatting was being
-set upon save.</p>
+<p>However, there is a little more to the puzzle. In most cases I prefer spaces
+to tabs, but this is not a discussion on tabs vs. spaces.  Somehow this formatting was
+not being set upon save.  No matter what I did, it still saved the file replacing
+tabs with spaces and an indention of 2 spaces.</p>
 
 <p>I quickly found the culprit.  In my .vimrc I have my default settings for
 managing tabs and spaces to default to 2 spaces and to convert tabs to
