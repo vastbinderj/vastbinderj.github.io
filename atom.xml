@@ -4,7 +4,7 @@
   <title><![CDATA[ascent.io]]></title>
   <link href="http://www.ascent.io/atom.xml" rel="self"/>
   <link href="http://www.ascent.io/"/>
-  <updated>2014-03-26T10:05:44-07:00</updated>
+  <updated>2014-03-26T13:52:50-07:00</updated>
   <id>http://www.ascent.io/</id>
   <author>
     <name><![CDATA[James Vastbinder]]></name>
@@ -23,8 +23,8 @@ format my code using Fmt every time I saved.  I did and I didn&rsquo;t.</p>
 
 <p>You see, we are working on the authorization piece of <a href="https://github.com/ottemo/ottemo-go">Ottemo</a> and since many
 projects can benefit from the work we are doing, we wanted to submit our
-OAUTH2 work to the <a href="http://martini.codegangsta.io/">Martini project</a>.  And,
-as should be, the source code needed to be formatted according to <a href="http://golang.org/doc/effective_go.html#formatting">Golang
+OAUTH2 work to the <a href="http://martini.codegangsta.io/">Martini project</a>.<br/>
+And, as should be, the source code needed to be formatted according to <a href="http://golang.org/doc/effective_go.html#formatting">Golang
 standards</a>.</p>
 
 <p>The one liner, which will format your code is below:</p>
@@ -120,6 +120,8 @@ to apply the exception to my global settings. Here is the result:</p>
 <span class='line-number'>34</span>
 <span class='line-number'>35</span>
 <span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
 </pre></td><td class='code'><pre><code class='vim'><span class='line'><span class="c">&quot; Go tagbar config</span>
 </span><span class='line'><span class="k">let</span> <span class="k">g</span>:tagbar_type_go <span class="p">=</span> {
 </span><span class='line'>    \ <span class="s1">&#39;ctagstype&#39;</span> : <span class="s1">&#39;go&#39;</span><span class="p">,</span>
@@ -150,7 +152,9 @@ to apply the exception to my global settings. Here is the result:</p>
 </span><span class='line'>\ }
 </span><span class='line'>
 </span><span class='line'><span class="c">&quot; Golang customizations</span>
-</span><span class='line'><span class="k">au</span> <span class="nb">BufWritePost</span> *.<span class="k">go</span> <span class="k">silent</span><span class="p">!</span> <span class="p">!</span>ctags <span class="p">-</span>R <span class="p">--</span>exclude<span class="p">=</span>*.<span class="nb">js</span><span class="p">,</span>*.html &amp;        <span class="c">&quot; generate go ctags upon save</span>
+</span><span class='line'><span class="c">&quot;</span>
+</span><span class='line'><span class="c">&quot; generate go ctags upon save</span>
+</span><span class='line'><span class="k">au</span> <span class="nb">BufWritePost</span> *.<span class="k">go</span> <span class="k">silent</span><span class="p">!</span> <span class="p">!</span>ctags <span class="p">-</span>R <span class="p">--</span>exclude<span class="p">=</span>*.<span class="nb">js</span><span class="p">,</span>*.html &amp;
 </span><span class='line'>autocmd <span class="nb">FileType</span> <span class="k">go</span> autocmd <span class="nb">BufWritePre</span> <span class="p">&lt;</span>buffer<span class="p">&gt;</span> Fmt                  <span class="c">&quot; format files upon save in GO</span>
 </span><span class='line'><span class="k">let</span> <span class="k">g</span>:syntastic_go_checkers <span class="p">=</span> [<span class="s1">&#39;go&#39;</span><span class="p">,</span><span class="s1">&#39;golint&#39;</span>]                         <span class="c">&quot; use golint for syntax checking in Go</span>
 </span><span class='line'><span class="k">let</span> <span class="k">g</span>:godef_same_file_in_same_window<span class="p">=</span><span class="m">1</span>                                <span class="c">&quot; when in go, move the cursor if in same file </span>

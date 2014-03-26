@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Fmt | ascent.io]]></title>
   <link href="http://www.ascent.io/blog/categories/fmt/atom.xml" rel="self"/>
   <link href="http://www.ascent.io/"/>
-  <updated>2014-03-26T10:05:44-07:00</updated>
+  <updated>2014-03-26T13:52:50-07:00</updated>
   <id>http://www.ascent.io/</id>
   <author>
     <name><![CDATA[James Vastbinder]]></name>
@@ -23,8 +23,8 @@ format my code using Fmt every time I saved.  I did and I didn&rsquo;t.</p>
 
 <p>You see, we are working on the authorization piece of <a href="https://github.com/ottemo/ottemo-go">Ottemo</a> and since many
 projects can benefit from the work we are doing, we wanted to submit our
-OAUTH2 work to the <a href="http://martini.codegangsta.io/">Martini project</a>.  And,
-as should be, the source code needed to be formatted according to <a href="http://golang.org/doc/effective_go.html#formatting">Golang
+OAUTH2 work to the <a href="http://martini.codegangsta.io/">Martini project</a>.<br/>
+And, as should be, the source code needed to be formatted according to <a href="http://golang.org/doc/effective_go.html#formatting">Golang
 standards</a>.</p>
 
 <p>The one liner, which will format your code is below:</p>
@@ -107,12 +107,14 @@ let g:tagbar_type_go = {</p>
 <p>\ }</p>
 
 <p>&ldquo; Golang customizations
-au BufWritePost <em>.go silent! !ctags -R &mdash;exclude=</em>.js,*.html &amp;        &rdquo; generate go ctags upon save
-autocmd FileType go autocmd BufWritePre <buffer> Fmt                  &ldquo; format files upon save in GO
-let g:syntastic_go_checkers = [&lsquo;go&rsquo;,&lsquo;golint&rsquo;]                         &rdquo; use golint for syntax checking in Go
-let g:godef_same_file_in_same_window=1                                &ldquo; when in go, move the cursor if in same file
-autocmd FileType go setlocal shiftwidth=8 tabstop=8 softtabstop=8     &rdquo; set tab stops to 8 for Go files
-autocmd FileType go setlocal noexpandtab                              &ldquo; don&rsquo;t expand tabs to spaces for Go files
+&rdquo;
+&ldquo; generate go ctags upon save
+au BufWritePost <em>.go silent! !ctags -R &mdash;exclude=</em>.js,*.html &amp;      <br/>
+autocmd FileType go autocmd BufWritePre <buffer> Fmt                  &rdquo; format files upon save in GO
+let g:syntastic_go_checkers = [&lsquo;go&rsquo;,&lsquo;golint&rsquo;]                         &ldquo; use golint for syntax checking in Go
+let g:godef_same_file_in_same_window=1                                &rdquo; when in go, move the cursor if in same file
+autocmd FileType go setlocal shiftwidth=8 tabstop=8 softtabstop=8     &ldquo; set tab stops to 8 for Go files
+autocmd FileType go setlocal noexpandtab                              &rdquo; don&rsquo;t expand tabs to spaces for Go files
 ```</p>
 
 <p>If you see any issues with my customizations or think I should do something
