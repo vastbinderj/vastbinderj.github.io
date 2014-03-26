@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Fmt | ascent.io]]></title>
   <link href="http://www.ascent.io/blog/categories/fmt/atom.xml" rel="self"/>
   <link href="http://www.ascent.io/"/>
-  <updated>2014-03-26T09:47:58-07:00</updated>
+  <updated>2014-03-26T09:50:40-07:00</updated>
   <id>http://www.ascent.io/</id>
   <author>
     <name><![CDATA[James Vastbinder]]></name>
@@ -23,7 +23,9 @@ format my code using Fmt every time I saved.  I did and I didn&rsquo;t.</p>
 
 <p>You see, we are working on the authorization piece of Ottemo and since many
 projects can benefit from the work we are doing, we wanted to submit our
-OAUTH2 work to the <a href="http://martini.codegangsta.io/">Martini project</a>.</p>
+OAUTH2 work to the <a href="http://martini.codegangsta.io/">Martini project</a>.  And,
+as should be, the source code needed to be formatted according to Golang
+standards.</p>
 
 <p>The one liner, which will format your code is below:</p>
 
