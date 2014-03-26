@@ -9,7 +9,7 @@ categories: [Golang, Vim, How-To, Fmt]
 I've been working with Go for a few weeks now and thought I had vim set up to 
 format my code using Fmt every time I saved.  I did and I didn't.
 
-You see, we are working on the authorization piece of Ottemo and since many 
+You see, we are working on the authorization piece of [Ottemo](https://github.com/ottemo/ottemo-go) and since many 
 projects can benefit from the work we are doing, we wanted to submit our 
 OAUTH2 work to the [Martini project](http://martini.codegangsta.io/).  And,
 as should be, the source code needed to be formatted according to [Golang
@@ -54,7 +54,9 @@ autocmd FileType go setlocal noexpandtab                              " don't ex
 ```
 
 This fixed my problems when saving Go formatted files and saves me from running
-`go Fmt` on my files outside of vim.  Here is my final set of vim customizations:
+`go Fmt` on my files outside of vim.  
+
+Here is my final set of vim customizations:
 
 ``` vim .vimrc
 " Go tagbar config
