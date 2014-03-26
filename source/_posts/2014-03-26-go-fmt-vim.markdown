@@ -12,6 +12,7 @@ format my code using Fmt every time I saved.  I did and I didn't.
 You see, we are working on the authorization piece of [Ottemo](https://github.com/ottemo/ottemo-go) and since many 
 projects can benefit from the work we are doing, we wanted to submit our 
 OAUTH2 work to the [Martini project](http://martini.codegangsta.io/).  
+
 And, as should be, the source code needed to be formatted according to [Golang
 standards](http://golang.org/doc/effective_go.html#formatting).
 
