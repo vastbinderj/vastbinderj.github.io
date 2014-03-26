@@ -1,0 +1,87 @@
+---
+layout: post
+title: "Run Fmt Upon Save in Vim"
+date: 2014-03-26 07:18:32 -0700
+comments: true
+categories: [Golang, Vim, How-To, Fmt]
+---
+
+I've been working with Go for a few weeks now and thought I had vim set up to 
+format my code using Fmt every time I saved.  I did and I didn't.
+
+The one liner which will format your code is
+
+``` vim .vimrc
+" format golang upon save
+autocmd FileType go autocmd BufWritePre <buffer> Fmt 
+```
+
+<!-- more -->
+However, there is a little more to the puzzle.  (I prefer spaces to tabs, but 
+this is not a discussion on tabs vs. spaces.)  In my .vimrc I have my default 
+settings for managing tabs and spaces to default to 2 spaces and to convert
+tabs to spaces when I save a file. 
+
+``` vim 
+set tabstop=2             " number of spaces that a <tab> represents in a file
+set shiftwidth=2          " number of spaces to use for (auto)indent
+set expandtab             " use spaces instead of tabs
+set softtabstop=2         " number of spaces that a <tab> represents
+set smarttab              " smart handling of tabs when inserting or deleting
+``` 
+
+This meant that when I opened a Golang formatted file, as soon as I saved it,
+gone were the tabs in my Golang files.  I want to adhere to the standard, so I
+needed to create an exception for Go files. 
+
+``` vim
+autocmd FileType go setlocal shiftwidth=8 tabstop=8 softtabstop=8     " set tab stops to 8 for Go files
+autocmd FileType go setlocal noexpandtab                              " don't expand tabs to spaces for Go files
+```
+
+This fixed my problems when saving Go formatted files and saves me from running
+`go Fmt` on my files outside of vim.  Here is my final set of vim customizations:
+
+``` vim .vimrc
+" Go tagbar config
+let g:tagbar_type_go = {
+    \ 'ctagstype' : 'go',
+    \ 'kinds'     : [
+        \ 'p:package',
+        \ 'i:imports:1',
+        \ 'c:constants',
+        \ 'v:variables',
+        \ 't:types',
+        \ 'n:interfaces',
+        \ 'w:fields',
+        \ 'e:embedded',
+        \ 'm:methods',
+        \ 'r:constructor',
+        \ 'f:functions'
+    \ ],
+    \ 'sro' : '.',
+    \ 'kind2scope' : {
+        \ 't' : 'ctype',
+        \ 'n' : 'ntype'
+    \ },
+    \ 'scope2kind' : {
+        \ 'ctype' : 't',
+        \ 'ntype' : 'n'
+    \ },
+    \ 'ctagsbin'  : 'gotags',
+    \ 'ctagsargs' : '-sort -silent'
+\ }
+
+" Golang customizations
+au BufWritePost *.go silent! !ctags -R --exclude=*.js,*.html &        " generate go ctags upon save
+autocmd FileType go autocmd BufWritePre <buffer> Fmt                  " format files upon save in GO
+let g:syntastic_go_checkers = ['go','golint']                         " use golint for syntax checking in Go
+let g:godef_same_file_in_same_window=1                                " when in go, move the cursor if in same file 
+autocmd FileType go setlocal shiftwidth=8 tabstop=8 softtabstop=8     " set tab stops to 8 for Go files
+autocmd FileType go setlocal noexpandtab                              " don't expand tabs to spaces for Go files
+```
+
+If you see any issues with my customizations or think I should do something 
+differently, let me know.  
+
+Cheers
