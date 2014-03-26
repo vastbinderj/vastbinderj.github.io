@@ -4,7 +4,7 @@
   <title><![CDATA[ascent.io]]></title>
   <link href="http://www.ascent.io/atom.xml" rel="self"/>
   <link href="http://www.ascent.io/"/>
-  <updated>2014-03-26T09:50:40-07:00</updated>
+  <updated>2014-03-26T09:52:29-07:00</updated>
   <id>http://www.ascent.io/</id>
   <author>
     <name><![CDATA[James Vastbinder]]></name>
@@ -24,8 +24,8 @@ format my code using Fmt every time I saved.  I did and I didn&rsquo;t.</p>
 <p>You see, we are working on the authorization piece of Ottemo and since many
 projects can benefit from the work we are doing, we wanted to submit our
 OAUTH2 work to the <a href="http://martini.codegangsta.io/">Martini project</a>.  And,
-as should be, the source code needed to be formatted according to Golang
-standards.</p>
+as should be, the source code needed to be formatted according to <a href="http://golang.org/doc/effective_go.html#formatting">Golang
+standards</a>.</p>
 
 <p>The one liner, which will format your code is below:</p>
 
@@ -66,7 +66,7 @@ spaces when I save a file.</p>
 <p>This meant that when I opened a Golang formatted file, as soon as I saved it,
 gone were the tabs in my Golang files.  I wanted to adhere to the standard, so I
 needed to find a way to make an exception for Go source files.  According to
-<a href="http://golang.org/doc/effective_go.html#formatting">the Go standards</a> they use tabs
+<a href="http://golang.org/doc/effective_go.html#formatting">the Go formatting standards</a> they use tabs
 with a tabstop of 8.</p>
 
 <p>To make an exception for Go source code, I am using the <code>setlocal</code> identifier
