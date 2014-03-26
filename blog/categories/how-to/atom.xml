@@ -4,7 +4,7 @@
   <title><![CDATA[Category: How-To | ascent.io]]></title>
   <link href="http://www.ascent.io/blog/categories/how-to/atom.xml" rel="self"/>
   <link href="http://www.ascent.io/"/>
-  <updated>2014-03-26T09:52:29-07:00</updated>
+  <updated>2014-03-26T09:54:12-07:00</updated>
   <id>http://www.ascent.io/</id>
   <author>
     <name><![CDATA[James Vastbinder]]></name>
@@ -69,7 +69,9 @@ autocmd FileType go setlocal noexpandtab                              " don't ex
 </code></p>
 
 <p>This fixed my problems when saving Go formatted files and saves me from running
-<code>go Fmt</code> on my files outside of vim.  Here is my final set of vim customizations:</p>
+<code>go Fmt</code> on my files outside of vim.</p>
+
+<p>Here is my final set of vim customizations:</p>
 
 <p>``` vim .vimrc
 &ldquo; Go tagbar config
