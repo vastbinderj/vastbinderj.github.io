@@ -11,8 +11,8 @@ format my code using Fmt every time I saved.  I did and I didn't.
 
 You see, we are working on the authorization piece of [Ottemo](https://github.com/ottemo/ottemo-go) and since many 
 projects can benefit from the work we are doing, we wanted to submit our 
-OAUTH2 work to the [Martini project](http://martini.codegangsta.io/).  And,
-as should be, the source code needed to be formatted according to [Golang
+OAUTH2 work to the [Martini project](http://martini.codegangsta.io/).  
+And, as should be, the source code needed to be formatted according to [Golang
 standards](http://golang.org/doc/effective_go.html#formatting).
 
 The one liner, which will format your code is below:
@@ -89,7 +89,9 @@ let g:tagbar_type_go = {
 \ }
 
 " Golang customizations
-au BufWritePost *.go silent! !ctags -R --exclude=*.js,*.html &        " generate go ctags upon save
+"
+" generate go ctags upon save
+au BufWritePost *.go silent! !ctags -R --exclude=*.js,*.html &        
 autocmd FileType go autocmd BufWritePre <buffer> Fmt                  " format files upon save in GO
 let g:syntastic_go_checkers = ['go','golint']                         " use golint for syntax checking in Go
 let g:godef_same_file_in_same_window=1                                " when in go, move the cursor if in same file 
