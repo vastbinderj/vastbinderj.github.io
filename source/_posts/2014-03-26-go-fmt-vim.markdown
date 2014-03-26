@@ -9,7 +9,7 @@ categories: [Golang, Vim, How-To, Fmt]
 I've been working with Go for a few weeks now and thought I had vim set up to 
 format my code using Fmt every time I saved.  I did and I didn't.
 
-The one liner which will format your code is
+The one liner, which will format your code is below:
 
 ``` vim .vimrc
 " format golang upon save
@@ -18,21 +18,29 @@ autocmd FileType go autocmd BufWritePre <buffer> Fmt
 
 <!-- more -->
 However, there is a little more to the puzzle.  (I prefer spaces to tabs, but 
-this is not a discussion on tabs vs. spaces.)  In my .vimrc I have my default 
-settings for managing tabs and spaces to default to 2 spaces and to convert
-tabs to spaces when I save a file. 
+this is not a discussion on tabs vs. spaces.)  Somehow this formatting was being 
+set upon save. 
+
+I quickly found the culprit.  In my .vimrc I have my default settings for 
+managing tabs and spaces to default to 2 spaces and to convert tabs to 
+spaces when I save a file. 
 
 ``` vim 
 set tabstop=2             " number of spaces that a <tab> represents in a file
 set shiftwidth=2          " number of spaces to use for (auto)indent
-set expandtab             " use spaces instead of tabs
+set expandtab             " expand tabs to spaces
 set softtabstop=2         " number of spaces that a <tab> represents
 set smarttab              " smart handling of tabs when inserting or deleting
 ``` 
 
 This meant that when I opened a Golang formatted file, as soon as I saved it,
-gone were the tabs in my Golang files.  I want to adhere to the standard, so I
-needed to create an exception for Go files. 
+gone were the tabs in my Golang files.  I wanted to adhere to the standard, so I
+needed to find a way to make an exception for Go source files.  According to 
+[the Go standards](http://golang.org/doc/effective_go.html#formatting) they use tabs 
+with a tabstop of 8.  
+
+To make an exception for Go source code, I am using the `setlocal` identifier 
+to apply the exception to my global settings. Here is the result:
 
 ``` vim
 autocmd FileType go setlocal shiftwidth=8 tabstop=8 softtabstop=8     " set tab stops to 8 for Go files
